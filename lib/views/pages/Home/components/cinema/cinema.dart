@@ -1,4 +1,4 @@
-import 'package:anga/views/pages/Home/components/cards/cards.dart';
+import 'package:anga/views/widgets/cards/cards.dart';
 import 'package:flutter/material.dart';
 
 
