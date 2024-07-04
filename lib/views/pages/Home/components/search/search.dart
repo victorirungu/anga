@@ -4,6 +4,7 @@ import 'package:anga/views/widgets/buttons/simple_button.dart';
 import 'package:anga/views/widgets/inputs/time_input.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Search extends StatelessWidget {
   final double width;
@@ -14,11 +15,11 @@ class Search extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 30.0),
           child: CustomText(
             text: "Find a Film",
             color: primaryForeGround(),
-            fontSize: 50.0,
+            fontSize: width * .038,
             fontWeight: FontWeight.w800,
           ),
         ),
@@ -60,7 +61,12 @@ class Search extends StatelessWidget {
                 bgColor: primaryColor(),
                 borderRadius: 20.0,
                 height: 40.0,
-                width: 200.0,
+                width: 220.0,
+                icon: Icons.search,
+                style: GoogleFonts.roboto(
+                    color: darkColor(),
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600),
               )
             ],
           ),

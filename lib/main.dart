@@ -13,11 +13,11 @@ class MyApp extends StatelessWidget {
       title: 'Anga Cinemas',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 20, 41, 194)),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 20, 41, 194)),
         useMaterial3: true,
       ),
-      home:const Home(),
+      home: Home(),
     );
   }
 }
-

@@ -18,6 +18,6 @@ Color primaryForeGround() =>
 Color themeColorError() => const Color.fromARGB(255, 215, 19, 5);
 Color themeColorWarning() => Colors.orange;
 //others
-Color themeColorGrey() => const Color.fromARGB(255, 167, 167, 167);
+Color themeColorGrey() => const Color.fromARGB(255, 199, 199, 199);
 Color themeColorTransparent() => const Color.fromARGB(0, 255, 255, 255);
 Color colorBlack() => Colors.black;

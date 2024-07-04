@@ -1,0 +1,63 @@
+import 'package:anga/views/pages/Home/components/footer/email_subscription.dart';
+import 'package:anga/views/themes/themes.dart';
+import 'package:anga/views/widgets/text.dart';
+import 'package:flutter/material.dart';
+
+class Footer extends StatelessWidget {
+  final double width;
+  const Footer({super.key, required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 50.0, top: 50.0),
+          child: Container(
+            width: width * .6,
+            height: 220.0,
+            decoration: BoxDecoration(
+                color: lightColor().withOpacity(.05),
+                borderRadius: BorderRadius.circular(20.0)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                    child: CustomText(
+                      text: "Subscribe to Anga Cinemas",
+                      color: primaryForeGround(),
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                    child: CustomText(
+                      text: "TO GET THE LATEST NEWS AND UPDATES",
+                      color: primaryForeGround(),
+                      fontSize: 29.0,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: EmailSubscription(
+                    width: width,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

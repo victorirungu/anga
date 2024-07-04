@@ -24,7 +24,7 @@ class CustomDateTimePickerState extends State<CustomDateTimePicker> {
       ),
       child: Row(
         children: [
-          const Icon(Icons.calendar_today, color: Colors.white),
+          Icon(Icons.calendar_month, color: primaryForeGround()),
           const SizedBox(width: 8.0),
           Expanded(
             child: GestureDetector(
@@ -44,15 +44,18 @@ class CustomDateTimePickerState extends State<CustomDateTimePicker> {
                 }
               },
               child: AbsorbPointer(
-                child: TextField(
-                  controller: controller,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                    hintText: 'dd/mm/yyyy',
-                    hintStyle: TextStyle(color: Colors.white),
-                    border: InputBorder.none,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0, 0.0, 0.0, 12.0),
+                  child: TextField(
+                    controller: controller,
+                    style: TextStyle(color: primaryForeGround()),
+                    decoration: InputDecoration(
+                      hintText: 'dd/mm/yyyy',
+                      hintStyle: TextStyle(color: primaryForeGround()),
+                      border: InputBorder.none,
+                    ),
+                    keyboardType: TextInputType.datetime,
                   ),
-                  keyboardType: TextInputType.datetime,
                 ),
               ),
             ),
