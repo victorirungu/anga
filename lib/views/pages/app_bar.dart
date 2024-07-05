@@ -1,10 +1,13 @@
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomAppBar extends StatefulWidget {
-  const CustomAppBar({super.key});
+  final GlobalKey<NavigatorState> mainNavigatorKey;
+  CustomAppBar({super.key, required this.mainNavigatorKey});
 
+  final ScrollController controller = Get.put(ScrollController());
   @override
   CustomAppBarState createState() => CustomAppBarState();
 }
@@ -12,6 +15,7 @@ class CustomAppBar extends StatefulWidget {
 class CustomAppBarState extends State<CustomAppBar> {
   String activeLink = 'Home';
   bool _isDropdownShown = false;
+  Color appBarColor = Colors.transparent;
 
   void setActiveLink(String link) {
     setState(() {
@@ -21,49 +25,60 @@ class CustomAppBarState extends State<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 24.0,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 100.0,
-        color: Colors.transparent,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 30.0),
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Image(image: AssetImage("images/logo.png")),
-                ),
+    Map resolution = getResolution(context);
+    double width = resolution['width'];
+    return Container(
+      width: width - 7.0,
+      height: 100.0,
+      color: Colors.transparent,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 30.0),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {},
+                child: const Image(image: AssetImage("images/logo.png")),
               ),
             ),
-            Row(
-              children: [
-                buildNavButton(context, 'Home', []),
-                buildNavButton(context, 'Events/Sports', []),
-                buildNavButton(context, 'Schedule ',
-                    ['Full Schedule', 'CBD', 'Panari/Sky', 'Diamond']),
-                buildNavButton(context, 'Coming Soon', []),
-                buildNavButton(context, 'My History', []),
-                buildNavButton(context, 'Contact', []),
-                buildNavButton(context, 'Login', []),
-              ],
-            ),
-            const SizedBox(),
-          ],
-        ),
+          ),
+          Row(
+            children: [
+              buildNavButton(context, width, 'Home', [], () {
+                widget.mainNavigatorKey.currentState
+                    ?.pushReplacementNamed('/home');
+              }),
+              buildNavButton(context, width, 'Events/Sports', [], () {}),
+              buildNavButton(context, width, 'Schedule ',
+                  ['Full Schedule', 'CBD', 'Panari/Sky', 'Diamond'], () {}),
+              buildNavButton(context, width, 'Coming Soon', [], () {}),
+              buildNavButton(context, width, 'My History', [], () {}),
+              buildNavButton(
+                context,
+                MediaQuery.of(context).size.width,
+                'Contact',
+                [],
+                () {
+                  widget.mainNavigatorKey.currentState
+                      ?.pushReplacementNamed('/contacts');
+                },
+              ),
+              buildNavButton(context, width, 'Login', [], () {}),
+            ],
+          ),
+          const SizedBox(),
+        ],
       ),
     );
   }
 
-  Widget buildNavButton(
-      BuildContext context, String title, List<String> dropdownItems) {
+  Widget buildNavButton(BuildContext context, double width, String title,
+      List<String> dropdownItems, VoidCallback? onPressed
+      // Explicitly specify the type and make it nullable
+      ) {
     final bool isActive = activeLink == title;
-    Map resolution = getResolution(context);
-    double width = resolution['width'];
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -71,12 +86,13 @@ class CustomAppBarState extends State<CustomAppBar> {
       onEnter: (event) => _showDropdown(context, title, dropdownItems, width),
       onExit: (event) {
         _isDropdownShown = false;
-        Navigator.pop;
+        // Navigator.pop(context);
       },
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: TextButton(
           onPressed: () {
+            onPressed?.call();
             setActiveLink(title);
           },
           child: Column(
@@ -126,7 +142,7 @@ class CustomAppBarState extends State<CustomAppBar> {
     _isDropdownShown = true;
     showMenu(
       context: context,
-      position: RelativeRect.fromLTRB(width / 2.23, 90.0, width / 2.23, 0.0),
+      position: RelativeRect.fromLTRB(width / 2.32, 75.0, width / 2.32, 0.0),
       items: dropdownItems.map((String item) {
         return PopupMenuItem<String>(
           value: item,
@@ -134,7 +150,7 @@ class CustomAppBarState extends State<CustomAppBar> {
         );
       }).toList(),
     ).then((value) {
-      // Handle the selected value if needed
+      // Handle the selected value
     });
   }
 }

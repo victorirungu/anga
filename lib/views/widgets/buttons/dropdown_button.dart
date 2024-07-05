@@ -10,6 +10,7 @@ class CustomDropdown extends StatefulWidget {
   final BorderRadius borderRadius;
   final dynamic underline;
   final dynamic icon;
+  final dynamic customSuffix;
 
   const CustomDropdown({
     super.key,
@@ -19,6 +20,7 @@ class CustomDropdown extends StatefulWidget {
     this.isUnderlined = false,
     this.underline,
     this.icon,
+    this.customSuffix,
     this.backgroundColor = Colors.transparent,
     this.borderRadius = BorderRadius.zero,
   });
@@ -62,7 +64,7 @@ class CustomDropdownState extends State<CustomDropdown> {
                 : const SizedBox(),
             SizedBox(
               width:
-                  widget.icon != null ? widget.width * .7 : widget.width * .96,
+                  widget.icon != null ? widget.width * .7 : widget.width * .9,
               child: DropdownButton<String>(
                 underline: widget.underline,
                 style: TextStyle(color: primaryForeGround()),
@@ -82,23 +84,24 @@ class CustomDropdownState extends State<CustomDropdown> {
                   });
                 },
                 icon: widget.icon == null
-                    ? SizedBox(
-                        height: 30.0,
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.expand_less_outlined,
-                              color: primaryForeGround(),
-                              size: 15.0,
-                            ),
-                            Icon(
-                              Icons.expand_more_outlined,
-                              color: primaryForeGround(),
-                              size: 15.0,
-                            ),
-                          ],
-                        ),
-                      )
+                    ? (widget.customSuffix ??
+                        SizedBox(
+                          height: 32.0,
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.expand_less_outlined,
+                                color: primaryForeGround(),
+                                size: 15.0,
+                              ),
+                              Icon(
+                                Icons.expand_more_outlined,
+                                color: primaryForeGround(),
+                                size: 15.0,
+                              ),
+                            ],
+                          ),
+                        ))
                     : Icon(
                         Icons.arrow_drop_down_circle_rounded,
                         color: primaryForeGround(),

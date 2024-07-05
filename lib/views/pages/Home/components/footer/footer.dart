@@ -1,11 +1,14 @@
 import 'package:anga/views/pages/Home/components/footer/email_subscription.dart';
+import 'package:anga/views/pages/Home/components/footer/quick_book.dart';
+import 'package:anga/views/pages/Home/components/footer/social_media.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
 
 class Footer extends StatelessWidget {
   final double width;
-  const Footer({super.key, required this.width});
+  final String currentYear = DateTime.now().year.toString();
+  Footer({super.key, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,7 @@ class Footer extends StatelessWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                    padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 5.0),
                     child: CustomText(
                       text: "TO GET THE LATEST NEWS AND UPDATES",
                       color: primaryForeGround(),
@@ -56,6 +59,24 @@ class Footer extends StatelessWidget {
               ],
             ),
           ),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: SocialMediaIcons(),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 40.0),
+          child: CustomText(
+            text:
+                "$currentYear Anga Cinemas. All rights reserved. Powered by Vesen Computing",
+            fontSize: 17.0,
+            fontWeight: FontWeight.w100,
+            color: primaryForeGround(),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 50.0),
+          child: QuickBook(width: width),
         ),
       ],
     );
