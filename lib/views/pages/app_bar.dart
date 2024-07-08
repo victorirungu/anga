@@ -111,7 +111,7 @@ class CustomAppBarState extends State<CustomAppBar> {
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: width * .0134,
+                      fontSize: width * .0134 > 16.0 ? 16.0 : width * .0134 ,
                       wordSpacing: 1.2,
                       color: isActive ? primaryColor() : primaryForeGround(),
                       fontWeight: isActive ? FontWeight.bold : FontWeight.w300,
