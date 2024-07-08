@@ -44345,17 +44345,17 @@ n=A.J(B.c.aa(229.5),n>>>16&255,n>>>8&255,n&255)}else n=B.A
 s=t.s
 r=t.p
 return A.as2(A.cl(A.b([new A.am(B.ER,A.hJ(A.ku(p,A.bB(B.G0,p,o*0.065),B.a9,!1,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,new A.a0f(),p,p,p),B.bI,p,p,p,p),p),A.cl(A.b([q.mV(a,o,"Home",A.b([],s),new A.a0g(q)),q.mV(a,o,"Events/Sports",A.b([],s),new A.a0h()),q.mV(a,o,"Schedule ",A.b(["Full Schedule","CBD","Panari/Sky","Diamond"],s),new A.a0i()),q.mV(a,o,"Coming Soon",A.b([],s),new A.a0j()),q.mV(a,o,"My History",A.b([],s),new A.a0k()),q.mV(a,A.be(a,p,t.w).w.a.a,"Contact",A.b([],s),new A.a0l(q)),q.mV(a,o,"Login",A.b([],s),new A.a0m())],r),B.w,p,B.D,B.x),B.bx],r),B.w,p,B.d6,B.x),n,B.W,p,B.M,100,o-10)},
-mV(a,b,c,d,e){var s,r,q,p=this,o=null,n=p.d===c
-if(n)s=B.av
+mV(a,b,c,d,e){var s,r,q=this,p=null,o=q.d===c,n=b*0.0134
+if(n>16)n=16
+if(o)s=B.av
 else s=$.bo().ax.gm(0)?B.v:B.r
-r=n?B.aK:B.bR
-r=A.ca(c,o,o,o,A.cz(o,o,s,o,o,o,o,o,o,o,o,b*0.0134,o,o,r,o,o,!0,o,o,o,o,o,o,o,1.2),o,o)
-if(d.length!==0)s=A.dq(B.eG,$.bo().ax.gm(0)?B.v:B.r,o,o)
+n=A.ca(c,p,p,p,A.cz(p,p,s,p,p,p,p,p,p,p,p,n,p,p,o?B.aK:B.bR,p,p,!0,p,p,p,p,p,p,p,1.2),p,p)
+if(d.length!==0)s=A.dq(B.eG,$.bo().ax.gm(0)?B.v:B.r,p,p)
 else s=B.bx
-q=t.p
-q=A.b([A.cl(A.b([r,s],q),B.w,o,B.D,B.x)],q)
-if(n)q.push(A.bh(o,o,B.k,B.av,o,o,o,1,o,B.Eq,o,o,o,b*0.03))
-return A.hJ(new A.am(B.ns,A.NK(A.bV(q,B.w,o,B.D,B.bj),new A.a0b(p,e,c),o),o),B.bI,o,new A.a0c(p,a,c,d,b),new A.a0d(p),new A.a0e(p,a,c,d,b))},
+r=t.p
+r=A.b([A.cl(A.b([n,s],r),B.w,p,B.D,B.x)],r)
+if(o)r.push(A.bh(p,p,B.k,B.av,p,p,p,1,p,B.Eq,p,p,p,b*0.03))
+return A.hJ(new A.am(B.ns,A.NK(A.bV(r,B.w,p,B.D,B.bj),new A.a0b(q,e,c),p),p),B.bI,p,new A.a0c(q,a,c,d,b),new A.a0d(q),new A.a0e(q,a,c,d,b))},
 P2(a,b,c,d){var s,r
 if(c.length===0)return
 if(this.e){this.e=!1
