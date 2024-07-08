@@ -1,13 +1,15 @@
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CustomAppBar extends StatefulWidget {
   final GlobalKey<NavigatorState> mainNavigatorKey;
-  CustomAppBar({super.key, required this.mainNavigatorKey});
+  final ScrollController scrollController;
+  const CustomAppBar(
+      {super.key,
+      required this.mainNavigatorKey,
+      required this.scrollController});
 
-  final ScrollController controller = Get.put(ScrollController());
   @override
   CustomAppBarState createState() => CustomAppBarState();
 }
@@ -27,10 +29,14 @@ class CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);
     double width = resolution['width'];
-    return Container(
-      width: width - 7.0,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      color: widget.scrollController.hasClients &&
+              widget.scrollController.offset > 100
+          ? primaryBackGround().withOpacity(.9)
+          : Colors.transparent,
+      width: width - 10.0,
       height: 100.0,
-      color: Colors.transparent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -40,7 +46,9 @@ class CustomAppBarState extends State<CustomAppBar> {
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () {},
-                child: const Image(image: AssetImage("images/logo.png")),
+                child: SizedBox(
+                    width: width * .065,
+                    child: const Image(image: AssetImage("images/logo.png"))),
               ),
             ),
           ),
@@ -103,7 +111,7 @@ class CustomAppBarState extends State<CustomAppBar> {
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: width * .0134,
                       wordSpacing: 1.2,
                       color: isActive ? primaryColor() : primaryForeGround(),
                       fontWeight: isActive ? FontWeight.bold : FontWeight.w300,
@@ -121,7 +129,7 @@ class CustomAppBarState extends State<CustomAppBar> {
                 Container(
                   margin: const EdgeInsets.only(top: 2.0),
                   height: 1.0,
-                  width: 40.0,
+                  width: width * .03,
                   color: primaryColor(),
                 ),
             ],

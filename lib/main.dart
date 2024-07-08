@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: secondaryColor()),
         useMaterial3: true,
       ),
-      home:const CustomNavigator(),
+      home: const CustomNavigator(),
     );
   }
 }

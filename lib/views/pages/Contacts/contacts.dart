@@ -6,9 +6,9 @@ import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
 
 class Contacts extends StatelessWidget {
-  ScrollController scrollController = ScrollController();
+  final ScrollController scrollController;
 
-  Contacts({super.key});
+  const Contacts({super.key, required this.scrollController});
   @override
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);

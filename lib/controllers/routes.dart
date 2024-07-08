@@ -1,12 +1,12 @@
-import 'package:anga/views/pages/Home/home.dart';
-import 'package:get/get.dart';
+// import 'package:anga/views/pages/Home/home.dart';
+// import 'package:get/get.dart';
 
-class AppRoutes {
-  static final routes = [
-    GetPage(
-      name: '/home',
-      page: () => Home(),
-    ),
+// class AppRoutes {
+//   static final routes = [
+//     GetPage(
+//       name: '/home',
+//       page: () => Home(),
+//     ),
    
-  ];
-}
+//   ];
+// }

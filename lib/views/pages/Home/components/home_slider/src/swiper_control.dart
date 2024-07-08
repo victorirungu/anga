@@ -12,6 +12,7 @@ class SwiperControl extends SwiperPlugin {
 
   ///icon size
   final double size;
+  final double containerSize;
 
   ///Icon normal color, The theme's [ThemeData.primaryColor] by default.
   final Color? color;
@@ -31,6 +32,7 @@ class SwiperControl extends SwiperPlugin {
     this.disableColor,
     this.key,
     this.size = 30.0,
+    this.containerSize = 60.0,
     this.padding = const EdgeInsets.all(10.0),
   });
 
@@ -41,6 +43,7 @@ class SwiperControl extends SwiperPlugin {
     required int quarterTurns,
     required bool previous,
   }) {
+
     return Padding(
       padding:padding,
       child: MouseRegion(
@@ -55,8 +58,8 @@ class SwiperControl extends SwiperPlugin {
             }
           },
           child: Container(
-            height: 60.0,
-            width: 60.0,
+            height:containerSize,
+            width: containerSize,
             decoration: BoxDecoration( color: secondaryColor(), borderRadius: BorderRadius.circular(10.0)),
             child: Center(
               child: RotatedBox(

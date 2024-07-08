@@ -37,12 +37,32 @@ class Cinema extends StatelessWidget {
         'image': 'images/homepage66.jpeg',
       },
     ];
+
+    int crossAxisCount = 2;
+    double screenWidth = width;
+    double childAspectRatio = 0.45;
+    if (screenWidth > 1100) {
+      crossAxisCount = 4;
+      childAspectRatio = 0.51;
+    } else if (screenWidth > 900) {
+      crossAxisCount = 3;
+      childAspectRatio = 0.55;
+    } else if (screenWidth > 600) {
+      crossAxisCount = 2;
+      childAspectRatio = 0.58;
+    } else if (screenWidth > 520) {
+      crossAxisCount = 2;
+      childAspectRatio = 0.50;
+    } else if (screenWidth > 300) {
+      crossAxisCount = 2;
+      childAspectRatio = 0.45;
+    }
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 30.0, bottom: 10.0),
           child: SizedBox(
-            width: width * .8,
+            width: width * .80 > 900 ? width * .80 : width * .86,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -80,13 +100,13 @@ class Cinema extends StatelessWidget {
                   bgColor: themeColorGrey(),
                   color: colorBlack(),
                   text: "ANGA DIAMOND",
-                  width: 155.0,
+                  width: width * .22 > 155.0 ? 155.0 : width * .22,
                   height: 35.0,
                   borderRadius: 20.0,
                   onPressed: () {},
                   style: TextStyle(
                       color: darkColor(),
-                      fontSize: 16.0,
+                      fontSize: width > 700 ? 16.0 : 13.0,
                       fontWeight: FontWeight.w900),
                 ),
               ),
@@ -96,13 +116,13 @@ class Cinema extends StatelessWidget {
                   bgColor: primaryColor(),
                   color: colorBlack(),
                   text: "ANGA SKY",
-                  width: 155.0,
+                  width: width * .22 > 155.0 ? 155.0 : width * .22,
                   height: 35.0,
                   borderRadius: 20.0,
                   onPressed: () {},
                   style: TextStyle(
                       color: darkColor(),
-                      fontSize: 16.0,
+                      fontSize: width > 700 ? 16.0 : 13.0,
                       fontWeight: FontWeight.w900),
                 ),
               ),
@@ -112,13 +132,13 @@ class Cinema extends StatelessWidget {
                   bgColor: primaryColor(),
                   color: colorBlack(),
                   text: "ANGA CBD",
-                  width: 155.0,
+                  width: width * .22 > 155.0 ? 155.0 : width * .22,
                   height: 35.0,
                   borderRadius: 20.0,
                   onPressed: () {},
                   style: TextStyle(
                       color: darkColor(),
-                      fontSize: 16.0,
+                      fontSize: width > 700 ? 16.0 : 13.0,
                       fontWeight: FontWeight.w900),
                 ),
               ),
@@ -134,7 +154,7 @@ class Cinema extends StatelessWidget {
               child: CustomText(
                 text: 'Showing  In Diamond Plaza Today',
                 color: primaryForeGround(),
-                fontSize: width * .021,
+                fontSize: width * .021 < 14.0 ? 14.0 : width * .021,
                 letterSpacing: 1.0,
                 fontWeight: FontWeight.w600,
               ),
@@ -148,10 +168,11 @@ class Cinema extends StatelessWidget {
               GridView.builder(
                 shrinkWrap: true,
                 itemCount: items.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: .65,
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 30.0,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: childAspectRatio,
+                  crossAxisCount: crossAxisCount,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
                 ),
                 itemBuilder: (context, index) {
                   return InteractiveCard(

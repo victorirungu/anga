@@ -10,14 +10,15 @@ import 'package:anga/views/widgets/buttons/dropdown_button.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatelessWidget {
-  Home({
+  final ScrollController scrollController;
+  const Home({
     super.key,
+    required this.scrollController,
   });
-  final ScrollController scrollController = Get.put(ScrollController());
+
   @override
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);
@@ -58,8 +59,8 @@ class Home extends StatelessWidget {
                         children: [
                           AnimatedButton(
                             onPress: () {},
-                            height: 62,
-                            width: 290,
+                            height: width < 700 ? 50.0 : 60.0,
+                            width: width * .5 > 290 ? 290 : width * .5,
                             text: 'BOOK NOW',
                             isReverse: true,
                             animatedOn: AnimatedOn.onHover,
@@ -89,7 +90,7 @@ class Home extends StatelessWidget {
                                 child: CustomText(
                                   text: "See What's on at ",
                                   color: Color.fromARGB(255, 108, 189, 255),
-                                  fontSize: 21.0,
+                                  fontSize: 20.0,
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: 1.2,
                                 ),

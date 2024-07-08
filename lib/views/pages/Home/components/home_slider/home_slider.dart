@@ -42,6 +42,7 @@ class HomeSlider extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return Stack(children: [
           SizedBox(
+            height: 600.0,
             width: width,
             child: Image.asset(
               items[index]['image']!,
@@ -57,8 +58,8 @@ class HomeSlider extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                    width: 105.0,
-                    height: 105.0,
+                    width: width * .077,
+                    height: width * .077,
                     decoration: BoxDecoration(
                       color: secondaryColor(),
                       shape: BoxShape.circle,
@@ -66,7 +67,7 @@ class HomeSlider extends StatelessWidget {
                     child: Icon(
                       Icons.play_circle_fill_rounded,
                       color: primaryColor(),
-                      size: 95.0,
+                      size: width * .075,
                     )),
                 Padding(
                   padding: const EdgeInsets.only(left: 15.0),
@@ -76,7 +77,7 @@ class HomeSlider extends StatelessWidget {
                         items[index]['name']!,
                         style: GoogleFonts.abrilFatface(
                             color: lightColor(),
-                            fontSize: 70.0,
+                            fontSize: width * .055,
                             fontWeight: FontWeight.bold),
                       )),
                 ),
@@ -98,9 +99,10 @@ class HomeSlider extends StatelessWidget {
       curve: Curves.ease,
       fade: 1.0,
       control: SwiperControl(
+        containerSize: width * .09 < 60.0 ? width * .08 : 60.0,
         color: lightColor(),
         padding: const EdgeInsets.symmetric(horizontal: 40.0),
-        size: 40.0,
+        size: width * .035,
         iconNext: Icons.arrow_forward_ios_rounded,
         iconPrevious: Icons.arrow_back_ios_rounded,
       ),

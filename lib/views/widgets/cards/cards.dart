@@ -15,7 +15,7 @@ class InteractiveCard extends StatelessWidget {
     required this.item,
     required this.borderColor,
     required this.usage,
-    this.width = 230.0,
+    this.width = 240.0,
     this.height = 325.0,
   });
 
