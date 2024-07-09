@@ -11,9 +11,9 @@ class ContactForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: width * .55,
+        width: width > 800 ? width * .55 : width * .75,
         child: Padding(
-          padding: const EdgeInsets.only(top: 110.0),
+          padding: EdgeInsets.only(top: width > 800 ? 110.0 : 50.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,

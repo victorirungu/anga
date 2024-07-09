@@ -10,6 +10,7 @@ class QuickBook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(width);
     return Container(
       color: lightColor().withOpacity(.1),
       width: width,
@@ -19,7 +20,7 @@ class QuickBook extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: 270.0,
+            width: width * .2,
             height: 80.0,
             color: secondaryColor(),
             child: Center(
@@ -48,7 +49,7 @@ class QuickBook extends StatelessWidget {
                 CustomDropdown(
                   defaultTitle: "Choose A Venue",
                   options: const ['Anga Diamond', 'Anga Sky', 'Anga CBD'],
-                  width: 200.0,
+                  width: width * .147,
                   customSuffix: Icon(
                     Icons.keyboard_arrow_down,
                     size: 12.0,
@@ -75,7 +76,7 @@ class QuickBook extends StatelessWidget {
                 CustomDropdown(
                   defaultTitle: "Choose A Film or Event",
                   options: const ['Anga Diamond', 'Anga Sky', 'Anga CBD'],
-                  width: 200.0,
+                  width: width * .147,
                   customSuffix: Icon(
                     Icons.keyboard_arrow_down,
                     size: 12.0,
@@ -102,7 +103,7 @@ class QuickBook extends StatelessWidget {
                 CustomDropdown(
                   defaultTitle: "Choose A Date",
                   options: const ['Anga Diamond', 'Anga Sky', 'Anga CBD'],
-                  width: 200.0,
+                  width: width * .147,
                   customSuffix: Icon(
                     Icons.keyboard_arrow_down,
                     size: 12.0,
@@ -129,7 +130,7 @@ class QuickBook extends StatelessWidget {
                 CustomDropdown(
                   defaultTitle: "Choose Time",
                   options: const ['Anga Diamond', 'Anga Sky', 'Anga CBD'],
-                  width: 200.0,
+                  width: width * .147,
                   customSuffix: Icon(
                     Icons.keyboard_arrow_down,
                     size: 12.0,
@@ -144,7 +145,7 @@ class QuickBook extends StatelessWidget {
             child: CustomElevatedButton(
                 onPressed: () {},
                 text: "SEARCH",
-                width: 100.0,
+                width: width * .0735,
                 bgColor: primaryColor(),
                 borderRadius: 4.0,
                 color: primaryColor(),

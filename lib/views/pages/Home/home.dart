@@ -4,6 +4,7 @@ import 'package:anga/views/pages/Home/components/coming_soon/coming_soon.dart';
 import 'package:anga/views/pages/Home/components/events/events.dart';
 import 'package:anga/views/pages/Home/components/footer/footer.dart';
 import 'package:anga/views/pages/Home/components/home_slider/home_slider.dart';
+import 'package:anga/views/pages/Home/components/logo.dart';
 import 'package:anga/views/pages/Home/components/search/search.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/buttons/dropdown_button.dart';
@@ -53,21 +54,22 @@ class Home extends StatelessWidget {
                         height: 600.0, width: width, child: const HomeSlider()),
                     //overlay
                     Positioned(
-                      top: 400.0,
-                      left: (width / 2) - 145,
+                      top: 380.0,
+                      left: (width / 2) -
+                          ((width * .5 > 280 ? 280 : width * .5) / 2),
                       child: Column(
                         children: [
                           AnimatedButton(
                             onPress: () {},
-                            height: width < 700 ? 50.0 : 60.0,
-                            width: width * .5 > 290 ? 290 : width * .5,
+                            height: width < 700 ? 50.0 : 55.0,
+                            width: width * .5 > 280 ? 280 : width * .5,
                             text: 'BOOK NOW',
                             isReverse: true,
                             animatedOn: AnimatedOn.onHover,
                             selectedTextColor: Colors.white,
                             transitionType: TransitionType.LEFT_TO_RIGHT,
                             textStyle: GoogleFonts.roboto(
-                                fontSize: 26,
+                                fontSize: 24,
                                 fontWeight: FontWeight.w900,
                                 color: colorBlack()),
                             backgroundColor: primaryColor(),
@@ -79,57 +81,121 @@ class Home extends StatelessWidget {
                       ),
                     ),
                     Positioned(
+                      top: 20.0,
+                      child: width < 800.0 ? const Logo() : const SizedBox(),
+                    ),
+                    Positioned(
                         bottom: 30.0,
                         child: SizedBox(
                           width: width,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(right: 15.0),
-                                child: CustomText(
-                                  text: "See What's on at ",
-                                  color: Color.fromARGB(255, 108, 189, 255),
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 1.2,
-                                ),
-                              ),
-                              CustomDropdown(
-                                defaultTitle: 'Choose your venue',
-                                options: const [
-                                  'Anga Diamond',
-                                  'Anga Sky',
-                                  'Anga CBD'
-                                ],
-                                width: width / 2.5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors
-                                          .transparent, // Transparent background
-                                      shadowColor: Colors.transparent,
-                                      padding: const EdgeInsets.all(0.0),
-                                      fixedSize: const Size.fromWidth(
-                                          20.0), // No shadow
-                                      side: BorderSide(
-                                          color:
-                                              primaryForeGround()), // Black border color
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                            6), // Border radius
+                          child: width > 600.0
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 15.0),
+                                      child: CustomText(
+                                        text: "See What's on at ",
+                                        color: secondaryColor(),
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1.2,
                                       ),
                                     ),
-                                    child: CustomText(
-                                      text: "GO",
-                                      color: primaryForeGround(),
-                                    )),
-                              )
-                            ],
-                          ),
+                                    CustomDropdown(
+                                      defaultTitle: 'Choose your venue',
+                                      options: const [
+                                        'Anga Diamond',
+                                        'Anga Sky',
+                                        'Anga CBD'
+                                      ],
+                                      width: width / 2.5,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors
+                                                .transparent, // Transparent background
+                                            shadowColor: Colors.transparent,
+                                            padding: const EdgeInsets.all(0.0),
+                                            fixedSize: const Size.fromWidth(
+                                                20.0), // No shadow
+                                            side: BorderSide(
+                                                color:
+                                                    primaryForeGround()), // Black border color
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      6), // Border radius
+                                            ),
+                                          ),
+                                          child: CustomText(
+                                            text: "GO",
+                                            color: primaryForeGround(),
+                                          )),
+                                    )
+                                  ],
+                                )
+                              : Column(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 15.0),
+                                      child: CustomText(
+                                        text: "See What's on at ",
+                                        color: secondaryColor(),
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1.2,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20.0),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CustomDropdown(
+                                          defaultTitle: 'Choose your venue',
+                                          options: const [
+                                            'Anga Diamond',
+                                            'Anga Sky',
+                                            'Anga CBD'
+                                          ],
+                                          width: width / 2.1,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: ElevatedButton(
+                                              onPressed: () {},
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors
+                                                    .transparent, // Transparent background
+                                                shadowColor: Colors.transparent,
+                                                padding:
+                                                    const EdgeInsets.all(0.0),
+                                                fixedSize: const Size.fromWidth(
+                                                    20.0), // No shadow
+                                                side: BorderSide(
+                                                    color:
+                                                        primaryForeGround()), // Black border color
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6), // Border radius
+                                                ),
+                                              ),
+                                              child: CustomText(
+                                                text: "GO",
+                                                color: primaryForeGround(),
+                                              )),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
                         ))
                   ],
                 ),

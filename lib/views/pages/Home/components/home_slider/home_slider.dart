@@ -77,13 +77,14 @@ class HomeSlider extends StatelessWidget {
                         items[index]['name']!,
                         style: GoogleFonts.abrilFatface(
                             color: lightColor(),
-                            fontSize: width * .055,
+                            fontSize: width * .053,
                             fontWeight: FontWeight.bold),
                       )),
                 ),
               ],
             ),
-          ))
+          )),
+       
         ]);
       },
       itemCount: items.length,

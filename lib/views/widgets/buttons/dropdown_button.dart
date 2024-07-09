@@ -36,7 +36,7 @@ class CustomDropdownState extends State<CustomDropdown> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.width,
-      height: 40.0,
+      height: 45.0,
       child: Container(
         decoration: BoxDecoration(
           color: widget.backgroundColor,
@@ -66,6 +66,7 @@ class CustomDropdownState extends State<CustomDropdown> {
               width:
                   widget.icon != null ? widget.width * .7 : widget.width * .9,
               child: DropdownButton<String>(
+                padding: const EdgeInsets.all(0.0),
                 underline: widget.underline,
                 style: TextStyle(color: primaryForeGround()),
                 dropdownColor: primaryBackGround(),
@@ -73,6 +74,7 @@ class CustomDropdownState extends State<CustomDropdown> {
                 hint: Text(
                   widget.defaultTitle,
                   style: TextStyle(
+                      fontSize: 12.0,
                       color: widget.icon == null
                           ? themeColorGrey()
                           : lightColor()),

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 ThemeController themeController = Get.put(ThemeController());
 //primary_and_secondary_colors
 Color primaryColor() => const Color.fromARGB(255, 255, 222, 4);
-Color secondaryColor() => const Color.fromARGB(255, 46, 84, 253);
+Color secondaryColor() => const Color.fromARGB(255, 34, 74, 255);
 //ligt_and_dark_themes
 Color darkColor() => const Color.fromARGB(250, 21, 21, 21);
 Color lightColor() => const Color.fromARGB(255, 246, 245, 245);

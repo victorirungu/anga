@@ -1,3 +1,4 @@
+import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -15,8 +16,10 @@ class CustomDateTimePickerState extends State<CustomDateTimePicker> {
 
   @override
   Widget build(BuildContext context) {
+    Map resolution = getResolution(context);
+    double width = resolution['width'];
     return Container(
-      height: 40.0,
+      height: 45.0,
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       decoration: BoxDecoration(
         color: secondaryColor(),
@@ -60,7 +63,11 @@ class CustomDateTimePickerState extends State<CustomDateTimePicker> {
               ),
             ),
           ),
-          const Icon(Icons.arrow_drop_down, color: Colors.white),
+          Padding(
+            padding: EdgeInsets.only(right: width > 760 ? 0.0 : 20.0),
+            child: const Icon(Icons.arrow_drop_down_circle_rounded,
+                color: Colors.white),
+          ),
         ],
       ),
     );

@@ -89,62 +89,12 @@ class Cinema extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CustomElevatedButton(
-                  bgColor: themeColorGrey(),
-                  color: colorBlack(),
-                  text: "ANGA DIAMOND",
-                  width: width * .22 > 155.0 ? 155.0 : width * .22,
-                  height: 35.0,
-                  borderRadius: 20.0,
-                  onPressed: () {},
-                  style: TextStyle(
-                      color: darkColor(),
-                      fontSize: width > 700 ? 16.0 : 13.0,
-                      fontWeight: FontWeight.w900),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CustomElevatedButton(
-                  bgColor: primaryColor(),
-                  color: colorBlack(),
-                  text: "ANGA SKY",
-                  width: width * .22 > 155.0 ? 155.0 : width * .22,
-                  height: 35.0,
-                  borderRadius: 20.0,
-                  onPressed: () {},
-                  style: TextStyle(
-                      color: darkColor(),
-                      fontSize: width > 700 ? 16.0 : 13.0,
-                      fontWeight: FontWeight.w900),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CustomElevatedButton(
-                  bgColor: primaryColor(),
-                  color: colorBlack(),
-                  text: "ANGA CBD",
-                  width: width * .22 > 155.0 ? 155.0 : width * .22,
-                  height: 35.0,
-                  borderRadius: 20.0,
-                  onPressed: () {},
-                  style: TextStyle(
-                      color: darkColor(),
-                      fontSize: width > 700 ? 16.0 : 13.0,
-                      fontWeight: FontWeight.w900),
-                ),
-              ),
-            ],
-          ),
-        ),
+        width > 600
+            ? cinemaPoints()
+            : SizedBox(
+                width: width * .8,
+                child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal, child: cinemaPoints())),
         SizedBox(
           width: width * .8,
           child: Padding(
@@ -212,6 +162,75 @@ class Cinema extends StatelessWidget {
             ],
           ),
         ),
+      ],
+    );
+  }
+
+  Row cinemaPoints() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const SizedBox(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomElevatedButton(
+                  bgColor: themeColorGrey(),
+                  color: colorBlack(),
+                  text: "ANGA DIAMOND",
+                  width: width * .22 > 155.0
+                      ? 155.0
+                      : (width * .22 < 120.0 ? 120.0 : width * .22),
+                  height: 35.0,
+                  borderRadius: 20.0,
+                  onPressed: () {},
+                  style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      color: darkColor(),
+                      fontSize: width > 700 ? 16.0 : 12.0,
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomElevatedButton(
+                  bgColor: primaryColor(),
+                  color: colorBlack(),
+                  text: "ANGA SKY",
+                  width: width * .22 > 155.0 ? 155.0 : width * .22,
+                  height: 35.0,
+                  borderRadius: 20.0,
+                  onPressed: () {},
+                  style: TextStyle(
+                      color: darkColor(),
+                      fontSize: width > 700 ? 16.0 : 13.0,
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomElevatedButton(
+                  bgColor: primaryColor(),
+                  color: colorBlack(),
+                  text: "ANGA CBD",
+                  width: width * .22 > 155.0 ? 155.0 : width * .22,
+                  height: 35.0,
+                  borderRadius: 20.0,
+                  onPressed: () {},
+                  style: TextStyle(
+                      color: darkColor(),
+                      fontSize: width > 700 ? 16.0 : 13.0,
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(),
       ],
     );
   }

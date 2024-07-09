@@ -39,7 +39,7 @@ class Contacts extends StatelessWidget {
                 //Header
                 ContactForm(width: width),
                 const Padding(
-                  padding: EdgeInsets.only(top: 80.0, bottom: 80.0),
+                  padding: EdgeInsets.only(top: 50.0, bottom: 50.0),
                   child: ContactInfo(),
                 ),
                 Footer(width: width),

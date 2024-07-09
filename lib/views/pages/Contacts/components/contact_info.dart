@@ -6,26 +6,80 @@ class ContactInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * .6,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          IconTextWidget(
-            icon: Icons.location_on,
-            text: 'Diamond Plaza, Pramukh Swami Ave',
-          ),
-          IconTextWidget(
-            icon: Icons.phone_in_talk,
-            text: '+254709920000 ',
-          ),
-          IconTextWidget(
-            icon: Icons.email_outlined,
-            text: 'support@angacinemas.com',
-          ),
-        ],
-      ),
-    );
+    return MediaQuery.of(context).size.width > 1050
+        ? SizedBox(
+            width: MediaQuery.of(context).size.width * .7,
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconTextWidget(
+                  icon: Icons.location_on,
+                  text: 'Diamond Plaza, Pramukh Swami Ave',
+                ),
+                IconTextWidget(
+                  icon: Icons.phone_in_talk,
+                  text: '+254709920000 ',
+                ),
+                IconTextWidget(
+                  icon: Icons.email_outlined,
+                  text: 'support@angacinemas.com',
+                ),
+              ],
+            ),
+          )
+        : MediaQuery.of(context).size.width > 700
+            ? SizedBox(
+                height: 170.0,
+                width: MediaQuery.of(context).size.width * .8,
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: IconTextWidget(
+                            icon: Icons.location_on,
+                            text: 'Diamond Plaza, Pramukh Swami Ave',
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        IconTextWidget(
+                          icon: Icons.phone_in_talk,
+                          text: '+254709920000 ',
+                        ),
+                      ],
+                    ),
+                    IconTextWidget(
+                      icon: Icons.email_outlined,
+                      text: 'support@angacinemas.com',
+                    ),
+                  ],
+                ),
+              )
+            : SizedBox(
+                width: MediaQuery.of(context).size.width * .8,
+                height: 200.0,
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconTextWidget(
+                      icon: Icons.location_on,
+                      text: 'Diamond Plaza, Pramukh Swami Ave',
+                    ),
+                    IconTextWidget(
+                      icon: Icons.phone_in_talk,
+                      text: '+254709920000 ',
+                    ),
+                    IconTextWidget(
+                      icon: Icons.email_outlined,
+                      text: 'support@angacinemas.com',
+                    ),
+                  ],
+                ),
+              );
   }
 }
 
@@ -33,7 +87,7 @@ class IconTextWidget extends StatelessWidget {
   final IconData icon;
   final String text;
 
-  IconTextWidget({required this.icon, required this.text});
+  const IconTextWidget({super.key, required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +110,10 @@ class IconTextWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 8), // Space between icon and text
-            Text(
+            const SizedBox(width: 8), // Space between icon and text
+            SelectableText(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black, // Text color
                 fontWeight: FontWeight.bold,
               ),

@@ -114,7 +114,7 @@ class _CustomNavigatorState extends State<CustomNavigator> {
           Positioned(
             top: 0,
             left: 0,
-            child: width > 700
+            child: width > 800
                 ? CustomAppBar(
                     mainNavigatorKey: mainNavigatorKey,
                     scrollController:
@@ -124,7 +124,7 @@ class _CustomNavigatorState extends State<CustomNavigator> {
           ),
         ],
       ),
-      bottomNavigationBar: width < 700
+      bottomNavigationBar: width < 800
           ? Container(
               color: themeColorTransparent().withOpacity(.0),
               height: 68.0,

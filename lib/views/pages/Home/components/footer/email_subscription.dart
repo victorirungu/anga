@@ -9,13 +9,14 @@ class EmailSubscription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width * .37,
-      height: 45.0,
+      width: width > 900 ? width * .37 : width * .7,
+      height: width > 600 ? 45.0 : 42.0,
       decoration: BoxDecoration(
         color: lightColor(),
         borderRadius: BorderRadius.circular(30.0),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const Expanded(
             child: TextField(
@@ -30,7 +31,10 @@ class EmailSubscription extends StatelessWidget {
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(0.0),
-              fixedSize: const Size(150.0, 45.0),
+              fixedSize: Size(
+                width > 600 ? 150.0 : 120.0,
+                width > 600 ? 45.0 : 42.0,
+              ),
               backgroundColor: secondaryColor(),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
@@ -39,7 +43,11 @@ class EmailSubscription extends StatelessWidget {
             child: CustomText(
               text: 'Subscribe',
               color: lightColor(),
-              fontSize: 20.0,
+              fontSize: width * .0225 > 20.0
+                  ? 20.0
+                  : width * .0225 < 14.0
+                      ? 14.0
+                      : width * .0225,
               fontWeight: FontWeight.w600,
             ),
           ),

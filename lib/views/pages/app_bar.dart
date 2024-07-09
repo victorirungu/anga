@@ -1,4 +1,5 @@
 import 'package:anga/views/functions/resolution.dart';
+import 'package:anga/views/pages/Home/components/logo.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -40,18 +41,7 @@ class CustomAppBarState extends State<CustomAppBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 30.0),
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () {},
-                child: SizedBox(
-                    width: width * .065,
-                    child: const Image(image: AssetImage("images/logo.png"))),
-              ),
-            ),
-          ),
+          const Logo(),
           Row(
             children: [
               buildNavButton(context, width, 'Home', [], () {
@@ -83,9 +73,7 @@ class CustomAppBarState extends State<CustomAppBar> {
   }
 
   Widget buildNavButton(BuildContext context, double width, String title,
-      List<String> dropdownItems, VoidCallback? onPressed
-      // Explicitly specify the type and make it nullable
-      ) {
+      List<String> dropdownItems, VoidCallback? onPressed) {
     final bool isActive = activeLink == title;
 
     return MouseRegion(
@@ -111,7 +99,9 @@ class CustomAppBarState extends State<CustomAppBar> {
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: width * .0134 > 16.0 ? 16.0 : width * .0134 ,
+                      fontSize: width * .0134 > 16.0
+                          ? 16.0
+                          : (width * .0134 < 12.0 ? 12.0 : width * .0134),
                       wordSpacing: 1.2,
                       color: isActive ? primaryColor() : primaryForeGround(),
                       fontWeight: isActive ? FontWeight.bold : FontWeight.w300,

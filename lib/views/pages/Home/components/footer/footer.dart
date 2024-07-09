@@ -17,7 +17,7 @@ class Footer extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 50.0, top: 50.0),
           child: Container(
-            width: width * .6,
+            width: width > 900 ? width * .6 : width * .8,
             height: 220.0,
             decoration: BoxDecoration(
                 color: lightColor().withOpacity(.05),
@@ -32,7 +32,11 @@ class Footer extends StatelessWidget {
                     child: CustomText(
                       text: "Subscribe to Anga Cinemas",
                       color: primaryForeGround(),
-                      fontSize: 26.0,
+                      fontSize: width * .02 > 26.0
+                          ? 26.0
+                          : width * .02 < 18.0
+                              ? 18.0
+                              : width * .02,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -44,7 +48,11 @@ class Footer extends StatelessWidget {
                     child: CustomText(
                       text: "TO GET THE LATEST NEWS AND UPDATES",
                       color: primaryForeGround(),
-                      fontSize: 29.0,
+                      fontSize: width * .021 > 29.0
+                          ? 29.0
+                          : width * .021 < 17.0
+                              ? 17.0
+                              : width * .021,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0,
                     ),
@@ -69,14 +77,18 @@ class Footer extends StatelessWidget {
           child: CustomText(
             text:
                 "$currentYear Anga Cinemas. All rights reserved. Powered by Vesen Computing",
-            fontSize: 17.0,
+            fontSize: width * .015 > 17.0
+                ? 17.0
+                : width * .015 < 13.0
+                    ? 13.0
+                    : width * .015,
             fontWeight: FontWeight.w100,
             color: primaryForeGround(),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 50.0),
-          child: QuickBook(width: width),
+          child: width > 1100 ? QuickBook(width: width) : const SizedBox(),
         ),
       ],
     );

@@ -82,8 +82,10 @@ class ComingSoon extends StatelessWidget {
                 items: _buildCarouselItems(),
                 options: CarouselOptions(
                   height: 480,
-                  aspectRatio: 3.0,
-                  viewportFraction: 0.33,
+                  // aspectRatio: 3.0,
+                  // viewportFraction: 0.33,
+                  aspectRatio: (width / 350.0).truncateToDouble(),
+                  viewportFraction: 1 / ((width / 350.0).truncateToDouble()),
                   enableInfiniteScroll: true,
                   autoPlay: true,
                   autoPlayInterval: const Duration(seconds: 5),

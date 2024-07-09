@@ -79,9 +79,12 @@ class Events extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 100.0, left: 30.0),
+              padding: EdgeInsets.only(
+                top: 100.0,
+                left: width * .020,
+              ),
               child: IconButton(
-                  iconSize: 60.0,
+                  iconSize: width * .035,
                   onPressed: () => _carouselController.previousPage(),
                   icon: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
@@ -92,15 +95,16 @@ class Events extends StatelessWidget {
                   )),
             ),
             SizedBox(
-              width: width * .8,
+              width: width > 700 ? width * .8 : width * .78,
               child: Column(
                 children: [
                   CarouselSlider(
                     items: _buildCarouselItems(),
                     options: CarouselOptions(
                       height: 555.0,
-                      aspectRatio: 3.0,
-                      viewportFraction: 0.33,
+                      aspectRatio: (width / 350.0).truncateToDouble(),
+                      viewportFraction:
+                          1 / ((width / 350.0).truncateToDouble()),
                       enableInfiniteScroll: true,
                       autoPlay: true,
                       autoPlayInterval: const Duration(seconds: 5),
@@ -138,9 +142,12 @@ class Events extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 100.0, right: 30.0),
+              padding: EdgeInsets.only(
+                top: 100.0,
+                right: width * .020,
+              ),
               child: IconButton(
-                  iconSize: 60.0,
+                  iconSize: width * .035,
                   onPressed: () => _carouselController.nextPage(),
                   icon: Icon(
                     Icons.arrow_forward_ios,
