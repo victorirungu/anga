@@ -43,26 +43,35 @@ class Cinema extends StatelessWidget {
     double childAspectRatio = 0.45;
     if (screenWidth > 1100) {
       crossAxisCount = 4;
-      childAspectRatio = 0.51;
+      childAspectRatio = 0.60;
     } else if (screenWidth > 900) {
       crossAxisCount = 3;
       childAspectRatio = 0.55;
+    } else if (screenWidth > 700) {
+      crossAxisCount = 3;
+      childAspectRatio = 0.48;
     } else if (screenWidth > 600) {
       crossAxisCount = 2;
-      childAspectRatio = 0.58;
+      childAspectRatio = 0.65;
+    } else if (screenWidth > 450) {
+      crossAxisCount = 2;
+      childAspectRatio = 0.53;
+    } else if (screenWidth > 450) {
+      crossAxisCount = 2;
+      childAspectRatio = 0.53;
     } else if (screenWidth > 520) {
       crossAxisCount = 2;
       childAspectRatio = 0.50;
-    } else if (screenWidth > 300) {
-      crossAxisCount = 2;
-      childAspectRatio = 0.45;
+    } else if (screenWidth > 250) {
+      crossAxisCount = 1;
+      childAspectRatio = 0.9;
     }
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 30.0, bottom: 10.0),
           child: SizedBox(
-            width: width * .80 > 900 ? width * .80 : width * .86,
+            width: width * .80 > 900 ? width * .80 : width * .90,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -112,7 +121,7 @@ class Cinema extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: width * .8,
+          width: width * .9,
           child: Column(
             children: [
               GridView.builder(
