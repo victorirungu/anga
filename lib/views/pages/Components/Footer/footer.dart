@@ -1,6 +1,6 @@
-import 'package:anga/views/pages/Home/components/footer/email_subscription.dart';
-import 'package:anga/views/pages/Home/components/footer/quick_book.dart';
-import 'package:anga/views/pages/Home/components/footer/social_media.dart';
+import 'package:anga/views/pages/Components/Footer/email_subscription.dart';
+import 'package:anga/views/pages/Components/Footer/quick_book.dart';
+import 'package:anga/views/pages/Components/Footer/social_media.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';

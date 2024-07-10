@@ -5,8 +5,16 @@ import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
 
-class Events extends StatelessWidget {
+class Events extends StatefulWidget {
   final double width;
+
+  const Events({super.key, required this.width});
+
+  @override
+  State<Events> createState() => _EventsState();
+}
+
+class _EventsState extends State<Events> {
   final List<Map<String, String>> items = [
     {
       'id': '1',
@@ -49,8 +57,8 @@ class Events extends StatelessWidget {
       'location': 'Anga Diamond'
     },
   ];
+
   final CarouselController _carouselController = CarouselController();
-  Events({super.key, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +67,7 @@ class Events extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
           child: SizedBox(
-            width: width * .8,
+            width: widget.width * .8,
             child: Align(
               alignment: Alignment.topCenter,
               child: Padding(
@@ -67,7 +75,7 @@ class Events extends StatelessWidget {
                 child: CustomText(
                   text: "Events",
                   color: primaryForeGround(),
-                  fontSize: width * .038,
+                  fontSize: widget.width * .038,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -81,10 +89,10 @@ class Events extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(
                 top: 100.0,
-                left: width * .020,
+                left: widget.width * .020,
               ),
               child: IconButton(
-                  iconSize: width * .035,
+                  iconSize: widget.width * .035,
                   onPressed: () => _carouselController.previousPage(),
                   icon: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
@@ -95,16 +103,17 @@ class Events extends StatelessWidget {
                   )),
             ),
             SizedBox(
-              width: width > 700 ? width * .8 : width * .78,
+              width:
+                  widget.width > 700 ? widget.width * .8 : widget.width * .78,
               child: Column(
                 children: [
                   CarouselSlider(
                     items: _buildCarouselItems(),
                     options: CarouselOptions(
                       height: 555.0,
-                      aspectRatio: (width / 350.0).truncateToDouble(),
+                      aspectRatio: (widget.width / 350.0).truncateToDouble(),
                       viewportFraction:
-                          1 / ((width / 350.0).truncateToDouble()),
+                          1 / ((widget.width / 350.0).truncateToDouble()),
                       enableInfiniteScroll: true,
                       autoPlay: true,
                       autoPlayInterval: const Duration(seconds: 5),
@@ -135,7 +144,7 @@ class Events extends StatelessWidget {
                     child: Container(
                       color: themeColorGrey(),
                       height: .8,
-                      width: width * .8,
+                      width: widget.width * .8,
                     ),
                   ),
                 ],
@@ -144,10 +153,10 @@ class Events extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(
                 top: 100.0,
-                right: width * .020,
+                right: widget.width * .020,
               ),
               child: IconButton(
-                  iconSize: width * .035,
+                  iconSize: widget.width * .035,
                   onPressed: () => _carouselController.nextPage(),
                   icon: Icon(
                     Icons.arrow_forward_ios,

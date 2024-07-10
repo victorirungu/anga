@@ -1,15 +1,19 @@
+import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/pages/Home/components/logo.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomAppBar extends StatefulWidget {
   final GlobalKey<NavigatorState> mainNavigatorKey;
   final ScrollController scrollController;
+
   const CustomAppBar(
       {super.key,
       required this.mainNavigatorKey,
-      required this.scrollController});
+      required this.scrollController,
+      });
 
   @override
   CustomAppBarState createState() => CustomAppBarState();
@@ -19,6 +23,30 @@ class CustomAppBarState extends State<CustomAppBar> {
   String activeLink = 'Home';
   bool _isDropdownShown = false;
   Color appBarColor = Colors.transparent;
+  ScrollController? activeScrollController;
+  final NavigationController navigationController = Get.put(NavigationController());
+  @override
+  void initState() {
+    super.initState();
+    activeLink = navigationController.activePage.value;
+    activeScrollController = widget.scrollController;
+    activeScrollController!.addListener(_onScroll);
+  }
+
+  bool hasReachedTopThreshold = false;
+  void _onScroll() {
+    if (!hasReachedTopThreshold &&
+        activeScrollController!.position.pixels <= 100) {
+      setState(() {
+        hasReachedTopThreshold = true;
+      });
+    } else if (hasReachedTopThreshold &&
+        activeScrollController!.position.pixels > 100) {
+      setState(() {
+        hasReachedTopThreshold = false;
+      });
+    }
+  }
 
   void setActiveLink(String link) {
     setState(() {
@@ -34,7 +62,7 @@ class CustomAppBarState extends State<CustomAppBar> {
       duration: const Duration(milliseconds: 200),
       color: widget.scrollController.hasClients &&
               widget.scrollController.offset > 100
-          ? primaryBackGround().withOpacity(.9)
+          ? primaryBackGround().withOpacity(.95)
           : Colors.transparent,
       width: width - 10.0,
       height: 100.0,
@@ -45,8 +73,7 @@ class CustomAppBarState extends State<CustomAppBar> {
           Row(
             children: [
               buildNavButton(context, width, 'Home', [], () {
-                widget.mainNavigatorKey.currentState
-                    ?.pushReplacementNamed('/home');
+                Get.offAllNamed('/home');
               }),
               buildNavButton(context, width, 'Events/Sports', [], () {}),
               buildNavButton(context, width, 'Schedule ',
@@ -59,8 +86,7 @@ class CustomAppBarState extends State<CustomAppBar> {
                 'Contact',
                 [],
                 () {
-                  widget.mainNavigatorKey.currentState
-                      ?.pushReplacementNamed('/contacts');
+                  Get.offAllNamed('/contacts');
                 },
               ),
               buildNavButton(context, width, 'Login', [], () {}),
@@ -82,14 +108,15 @@ class CustomAppBarState extends State<CustomAppBar> {
       onEnter: (event) => _showDropdown(context, title, dropdownItems, width),
       onExit: (event) {
         _isDropdownShown = false;
-        // Navigator.pop(context);
       },
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: TextButton(
           onPressed: () {
-            onPressed?.call();
-            setActiveLink(title);
+            if (!isActive) {
+              onPressed?.call();
+              setActiveLink(title);
+            }
           },
           child: Column(
             mainAxisSize: MainAxisSize.min,

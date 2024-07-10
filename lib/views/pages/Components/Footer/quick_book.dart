@@ -10,7 +10,6 @@ class QuickBook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(width);
     return Container(
       color: lightColor().withOpacity(.1),
       width: width,
