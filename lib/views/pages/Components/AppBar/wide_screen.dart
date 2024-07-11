@@ -1,5 +1,6 @@
 import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
+import 'package:anga/views/pages/Components/Globals/globals.dart';
 import 'package:anga/views/pages/Home/components/logo.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +10,11 @@ class CustomAppBar extends StatefulWidget {
   final GlobalKey<NavigatorState> mainNavigatorKey;
   final ScrollController scrollController;
 
-  const CustomAppBar(
-      {super.key,
-      required this.mainNavigatorKey,
-      required this.scrollController,
-      });
+  const CustomAppBar({
+    super.key,
+    required this.mainNavigatorKey,
+    required this.scrollController,
+  });
 
   @override
   CustomAppBarState createState() => CustomAppBarState();
@@ -24,7 +25,9 @@ class CustomAppBarState extends State<CustomAppBar> {
   bool _isDropdownShown = false;
   Color appBarColor = Colors.transparent;
   ScrollController? activeScrollController;
-  final NavigationController navigationController = Get.put(NavigationController());
+
+  final NavigationController navigationController =
+      Get.put(NavigationController());
   @override
   void initState() {
     super.initState();
@@ -54,6 +57,16 @@ class CustomAppBarState extends State<CustomAppBar> {
     });
   }
 
+  void scrollToTop() {
+    if (activeScrollController!.hasClients) {
+      activeScrollController!.animateTo(
+        0.0,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);
@@ -73,12 +86,28 @@ class CustomAppBarState extends State<CustomAppBar> {
           Row(
             children: [
               buildNavButton(context, width, 'Home', [], () {
-                Get.offAllNamed('/home');
+                if (Get.currentRoute != '/home') {
+                  Get.offAllNamed('/home');
+                } else {
+                  scrollToTop();
+                }
               }),
-              buildNavButton(context, width, 'Events/Sports', [], () {}),
+              buildNavButton(context, width, 'Events/Sports', [], () {
+                final context = eventsKey.currentContext;
+                if (Get.currentRoute != '/home') {
+                  Get.offAllNamed('/home');
+                }
+                scrollToPosition(context);
+              }),
               buildNavButton(context, width, 'Schedule ',
                   ['Full Schedule', 'CBD', 'Panari/Sky', 'Diamond'], () {}),
-              buildNavButton(context, width, 'Coming Soon', [], () {}),
+              buildNavButton(context, width, 'Coming Soon', [], () {
+                final context = comingSoonKey.currentContext;
+                if (Get.currentRoute != '/home') {
+                  Get.offAllNamed('/home');
+                }
+                scrollToPosition(context);
+              }),
               buildNavButton(context, width, 'My History', [], () {}),
               buildNavButton(
                 context,
@@ -96,6 +125,16 @@ class CustomAppBarState extends State<CustomAppBar> {
         ],
       ),
     );
+  }
+
+  void scrollToPosition(BuildContext? context) {
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   Widget buildNavButton(BuildContext context, double width, String title,
@@ -177,5 +216,9 @@ class CustomAppBarState extends State<CustomAppBar> {
     ).then((value) {
       // Handle the selected value
     });
+  }
+
+  BuildContext? getSectionContext(activeKey) {
+    return activeKey.currentContext;
   }
 }

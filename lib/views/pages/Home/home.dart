@@ -2,6 +2,7 @@ import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/pages/Components/AppBar/wide_screen.dart';
 import 'package:anga/views/pages/Components/AppBar/small_screen.dart';
+import 'package:anga/views/pages/Components/Globals/globals.dart';
 import 'package:anga/views/pages/Home/components/cinema/cinema.dart';
 import 'package:anga/views/pages/Home/components/coming_soon/coming_soon.dart';
 import 'package:anga/views/pages/Home/components/events/events.dart';
@@ -26,6 +27,7 @@ class Home extends StatelessWidget {
   final ScrollController homeScrollController = ScrollController();
   final NavigationController navigationController =
       Get.put(NavigationController());
+
   @override
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);
@@ -229,9 +231,9 @@ class Home extends StatelessWidget {
                       width: width,
                     ),
 
-                    Cinema(width: width),
-                    Events(width: width),
-                    ComingSoon(width: width),
+                    Cinema(key: cinemaKey, width: width),
+                    Events(key: eventsKey, width: width),
+                    ComingSoon(key: comingSoonKey, width: width),
                     Footer(width: width),
                   ],
                 ),
@@ -244,14 +246,14 @@ class Home extends StatelessWidget {
           left: 0,
           child: width > 800
               ? CustomAppBar(
+                  key: cinemaKey,
                   mainNavigatorKey: mainNavigatorKey,
                   scrollController: homeScrollController,
                 )
               : const SizedBox(),
         ),
       ]),
-      bottomNavigationBar:
-          width < 800 ? MobileNavigation() : const SizedBox(),
+      bottomNavigationBar: width < 800 ? MobileNavigation() : const SizedBox(),
     );
   }
 }

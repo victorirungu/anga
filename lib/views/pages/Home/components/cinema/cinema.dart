@@ -1,6 +1,7 @@
+import 'package:anga/views/pages/Home/components/cinema/grid.dart';
+import 'package:anga/views/pages/Home/components/cinema/locations.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/buttons/simple_button.dart';
-import 'package:anga/views/widgets/cards/cards.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
 
@@ -38,40 +39,30 @@ class Cinema extends StatelessWidget {
       },
     ];
 
-    int crossAxisCount = 2;
-    double screenWidth = width;
-    double childAspectRatio = 0.45;
-    if (screenWidth > 1100) {
-      crossAxisCount = 4;
-      childAspectRatio = 0.60;
-    } else if (screenWidth > 900) {
-      crossAxisCount = 3;
-      childAspectRatio = 0.55;
-    } else if (screenWidth > 700) {
-      crossAxisCount = 3;
-      childAspectRatio = 0.48;
-    } else if (screenWidth > 600) {
-      crossAxisCount = 2;
-      childAspectRatio = 0.65;
-    } else if (screenWidth > 450) {
-      crossAxisCount = 2;
-      childAspectRatio = 0.53;
-    } else if (screenWidth > 450) {
-      crossAxisCount = 2;
-      childAspectRatio = 0.53;
-    } else if (screenWidth > 520) {
-      crossAxisCount = 2;
-      childAspectRatio = 0.50;
-    } else if (screenWidth > 250) {
-      crossAxisCount = 1;
-      childAspectRatio = 0.9;
-    }
+    final List<Map<String, String>> locations = [
+      {
+        'id': '1',
+        'name': 'ANGA DIAMOND',
+        'desc': '',
+      },
+      {
+        'id': '2',
+        'name': 'ANGA SKY ',
+        'desc': '',
+      },
+      {
+        'id': '3',
+        'name': 'ANGA CBD',
+        'desc': '',
+      },
+    ];
+
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 30.0, bottom: 10.0),
           child: SizedBox(
-            width: width * .80 > 900 ? width * .80 : width * .90,
+            width: width * .80 > 900 ? width * .80 : width * .80,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -85,29 +76,27 @@ class Cinema extends StatelessWidget {
                   child: CustomText(
                     text: "Showing This Week",
                     color: primaryForeGround(),
-                    fontSize: width * .038,
+                    fontSize: width * .037,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                Container(
-                  color: primaryForeGround(),
-                  width: width * .21,
-                  height: .4,
+                Expanded(
+                  child: Container(
+                    color: primaryForeGround(),
+                    height: .4,
+                  ),
                 ),
               ],
             ),
           ),
         ),
-        width > 600
-            ? cinemaPoints()
-            : SizedBox(
-                width: width * .8,
-                child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal, child: cinemaPoints())),
+        SizedBox(
+            width: width * .8,
+            child: Locations(width: width, items: locations)),
         SizedBox(
           width: width * .8,
           child: Padding(
-            padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
+            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
             child: Align(
               alignment: Alignment.topLeft,
               child: CustomText(
@@ -121,26 +110,10 @@ class Cinema extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: width * .9,
+          width: width * .8,
           child: Column(
             children: [
-              GridView.builder(
-                shrinkWrap: true,
-                itemCount: items.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: childAspectRatio,
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
-                ),
-                itemBuilder: (context, index) {
-                  return InteractiveCard(
-                    item: items[index],
-                    borderColor: secondaryColor(),
-                    usage: 'Cinema',
-                  );
-                },
-              ),
+              CinemaGrid(items: items),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
