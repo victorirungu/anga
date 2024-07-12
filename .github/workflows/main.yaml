@@ -27,7 +27,7 @@ jobs:
         run: flutter pub get
 
       - name: Build web
-        run: flutter build web --web-renderer html --release
+        run: flutter build web --web-renderer html --release  build web --web-renderer html --release --base-href /${{ github.repository }}/
 
       - name: Move assets
         run: |
