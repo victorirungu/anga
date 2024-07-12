@@ -26,8 +26,12 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Extract Repository Name
+        id: repo_name
+        run:  echo "REPO_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+
       - name: Build web
-        run: flutter build web --web-renderer html --release  build web --web-renderer html --release --base-href /${{ github.repository }}/
+        run: flutter build web --web-renderer html --release  build web --web-renderer html --release --base-href /${{ env.REPO_NAME }}/
 
       - name: Move assets
         run: |
