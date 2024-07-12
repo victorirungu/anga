@@ -35,9 +35,9 @@ jobs:
 
       - name: Move assets
         run: |
-          mkdir -p ${{ env.REPO_NAME }}/build/web/assets
-          rsync -a ${{ env.REPO_NAME }}/build/web/assets/assets/ ${{ env.REPO_NAME }}/build/web/assets/
-          rm -rf ${{ env.REPO_NAME }}/build/web/assets/assets
+          mkdir -p build/web/assets
+          rsync -a build/web/assets/assets/ build/web/assets/
+          rm -rf build/web/assets/assets
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
