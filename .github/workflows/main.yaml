@@ -31,16 +31,16 @@ jobs:
         run:  echo "REPO_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
 
       - name: Build web
-        run: flutter build web --web-renderer html --release  build web --web-renderer html --release --base-href /${{ env.REPO_NAME }}/
+        run: flutter build web --web-renderer html --release --base-href /${{ env.REPO_NAME }}/
 
       - name: Move assets
         run: |
-          mkdir -p build/web/assets
-          rsync -a build/web/assets/assets/ build/web/assets/
-          rm -rf build/web/assets/assets
+          mkdir -p ${{ env.REPO_NAME }}/build/web/assets
+          rsync -a ${{ env.REPO_NAME }}/build/web/assets/assets/ ${{ env.REPO_NAME }}/build/web/assets/
+          rm -rf ${{ env.REPO_NAME }}/build/web/assets/assets
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.RELEASE_TOKEN }}
-          publish_dir: build/web
+          publish_dir: ${{ env.REPO_NAME }}/build/web
