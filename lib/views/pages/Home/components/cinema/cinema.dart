@@ -1,62 +1,22 @@
+import 'dart:convert';
+
+import 'package:anga/controllers/cinema.dart';
 import 'package:anga/views/pages/Home/components/cinema/grid.dart';
 import 'package:anga/views/pages/Home/components/cinema/locations.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/buttons/simple_button.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Cinema extends StatelessWidget {
   final double width;
-  const Cinema({super.key, required this.width});
+  Cinema({super.key, required this.width});
+
+  final CinemaController cinemaController = Get.put(CinemaController());
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> items = [
-      {
-        'id': '1',
-        'name': 'Kraven',
-        'image': 'images/homepage1.jpg',
-      },
-      {
-        'id': '2',
-        'name': 'Furiosa',
-        'image': 'images/homepage2.jpg',
-      },
-      {
-        'id': '3',
-        'name': 'Bad Boys',
-        'image': 'images/homepage4.jpg',
-      },
-      {
-        'id': '4',
-        'name': 'Inside Out 2',
-        'image': 'images/homepage55.jpg',
-      },
-      {
-        'id': '5',
-        'name': 'Despicable me 4',
-        'image': 'images/homepage66.jpeg',
-      },
-    ];
-
-    final List<Map<String, String>> locations = [
-      {
-        'id': '1',
-        'name': 'ANGA DIAMOND',
-        'desc': '',
-      },
-      {
-        'id': '2',
-        'name': 'ANGA SKY ',
-        'desc': '',
-      },
-      {
-        'id': '3',
-        'name': 'ANGA CBD',
-        'desc': '',
-      },
-    ];
-
     return Column(
       children: [
         Padding(
@@ -92,20 +52,21 @@ class Cinema extends StatelessWidget {
         ),
         SizedBox(
             width: width * .8,
-            child: Locations(width: width, items: locations)),
+            child: Locations(width: width, items: cinemaController.locations)),
         SizedBox(
           width: width * .8,
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20.0),
             child: Align(
               alignment: Alignment.topLeft,
-              child: CustomText(
-                text: 'Showing  In Diamond Plaza Today',
-                color: primaryForeGround(),
-                fontSize: width * .021 < 14.0 ? 14.0 : width * .021,
-                letterSpacing: 1.0,
-                fontWeight: FontWeight.w600,
-              ),
+              child: Obx(() => CustomText(
+                    text:
+                        'Showing  In ${cinemaController.selectedLocationCinema['location']} Today',
+                    color: primaryForeGround(),
+                    fontSize: width * .021 < 14.0 ? 14.0 : width * .021,
+                    letterSpacing: 1.0,
+                    fontWeight: FontWeight.w600,
+                  )),
             ),
           ),
         ),
@@ -113,7 +74,9 @@ class Cinema extends StatelessWidget {
           width: width * .8,
           child: Column(
             children: [
-              CinemaGrid(items: items),
+              Obx(() => CinemaGrid(
+                  items: jsonDecode(
+                      cinemaController.selectedLocationCinema['cinemas']))),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(

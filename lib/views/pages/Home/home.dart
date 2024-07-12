@@ -246,7 +246,6 @@ class Home extends StatelessWidget {
           left: 0,
           child: width > 800
               ? CustomAppBar(
-                  key: cinemaKey,
                   mainNavigatorKey: mainNavigatorKey,
                   scrollController: homeScrollController,
                 )
