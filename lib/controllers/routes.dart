@@ -5,6 +5,10 @@ import 'package:get/get.dart';
 class AppRoutes {
   static final routes = [
     GetPage(
+      name: '/',
+      page: () => Home(),
+    ),
+    GetPage(
       name: '/home',
       page: () => Home(),
     ),

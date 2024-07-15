@@ -70,7 +70,6 @@ class Contacts extends StatelessWidget {
           left: 0,
           child: width > 800
               ? CustomAppBar(
-                  mainNavigatorKey: mainNavigatorKey,
                   scrollController: scrollController,
                 )
               : const SizedBox(),

@@ -7,14 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomAppBar extends StatefulWidget {
-  final GlobalKey<NavigatorState> mainNavigatorKey;
-  final ScrollController scrollController;
-
   const CustomAppBar({
     super.key,
-    required this.mainNavigatorKey,
     required this.scrollController,
   });
+
+  final ScrollController scrollController;
 
   @override
   CustomAppBarState createState() => CustomAppBarState();
@@ -22,33 +20,20 @@ class CustomAppBar extends StatefulWidget {
 
 class CustomAppBarState extends State<CustomAppBar> {
   String activeLink = 'Home';
-  bool _isDropdownShown = false;
-  Color appBarColor = Colors.transparent;
   ScrollController? activeScrollController;
-
+  Color appBarColor = Colors.transparent;
+  bool hasReachedTopThreshold = false;
   final NavigationController navigationController =
       Get.put(NavigationController());
+
+  bool _isDropdownShown = false;
+
   @override
   void initState() {
     super.initState();
     activeLink = navigationController.activePage.value;
     activeScrollController = widget.scrollController;
     activeScrollController!.addListener(_onScroll);
-  }
-
-  bool hasReachedTopThreshold = false;
-  void _onScroll() {
-    if (!hasReachedTopThreshold &&
-        activeScrollController!.position.pixels <= 100) {
-      setState(() {
-        hasReachedTopThreshold = true;
-      });
-    } else if (hasReachedTopThreshold &&
-        activeScrollController!.position.pixels > 100) {
-      setState(() {
-        hasReachedTopThreshold = false;
-      });
-    }
   }
 
   void setActiveLink(String link) {
@@ -65,66 +50,6 @@ class CustomAppBarState extends State<CustomAppBar> {
         curve: Curves.easeOut,
       );
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Map resolution = getResolution(context);
-    double width = resolution['width'];
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      color: widget.scrollController.hasClients &&
-              widget.scrollController.offset > 100
-          ? primaryBackGround().withOpacity(.95)
-          : Colors.transparent,
-      width: width - 10.0,
-      height: 100.0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Logo(),
-          Row(
-            children: [
-              buildNavButton(context, width, 'Home', [], () {
-                if (Get.currentRoute != '/home') {
-                  Get.offAllNamed('/home');
-                } else {
-                  scrollToTop();
-                }
-              }),
-              buildNavButton(context, width, 'Events/Sports', [], () {
-                final context = eventsKey.currentContext;
-                if (Get.currentRoute != '/home') {
-                  Get.offAllNamed('/home');
-                }
-                scrollToPosition(context);
-              }),
-              buildNavButton(context, width, 'Schedule ',
-                  ['Full Schedule', 'CBD', 'Panari/Sky', 'Diamond'], () {}),
-              buildNavButton(context, width, 'Coming Soon', [], () {
-                final context = comingSoonKey.currentContext;
-                if (Get.currentRoute != '/home') {
-                  Get.offAllNamed('/home');
-                }
-                scrollToPosition(context);
-              }),
-              buildNavButton(context, width, 'My History', [], () {}),
-              buildNavButton(
-                context,
-                MediaQuery.of(context).size.width,
-                'Contact',
-                [],
-                () {
-                  Get.offAllNamed('/contacts');
-                },
-              ),
-              buildNavButton(context, width, 'Login', [], () {}),
-            ],
-          ),
-          const SizedBox(),
-        ],
-      ),
-    );
   }
 
   void scrollToPosition(BuildContext? context) {
@@ -195,6 +120,24 @@ class CustomAppBarState extends State<CustomAppBar> {
     );
   }
 
+  BuildContext? getSectionContext(activeKey) {
+    return activeKey.currentContext;
+  }
+
+  void _onScroll() {
+    if (!hasReachedTopThreshold &&
+        activeScrollController!.position.pixels <= 100) {
+      setState(() {
+        hasReachedTopThreshold = true;
+      });
+    } else if (hasReachedTopThreshold &&
+        activeScrollController!.position.pixels > 100) {
+      setState(() {
+        hasReachedTopThreshold = false;
+      });
+    }
+  }
+
   void _showDropdown(
       BuildContext context, String title, List<String> dropdownItems, width) {
     if (dropdownItems.isEmpty) return;
@@ -218,7 +161,63 @@ class CustomAppBarState extends State<CustomAppBar> {
     });
   }
 
-  BuildContext? getSectionContext(activeKey) {
-    return activeKey.currentContext;
+  @override
+  Widget build(BuildContext context) {
+    Map resolution = getResolution(context);
+    double width = resolution['width'];
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      color: widget.scrollController.hasClients &&
+              widget.scrollController.offset > 100
+          ? primaryBackGround().withOpacity(.95)
+          : Colors.transparent,
+      width: width - 10.0,
+      height: 100.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Logo(),
+          Row(
+            children: [
+              buildNavButton(context, width, 'Home', [], () {
+                if (Get.currentRoute != '/home') {
+                  Get.offAllNamed('/home');
+                } else {
+                  scrollToTop();
+                }
+              }),
+              buildNavButton(context, width, 'Events/Sports', [], () {
+                final context = eventsKey.currentContext;
+                if (Get.currentRoute != '/home') {
+                  Get.offAllNamed('/home');
+                }
+                scrollToPosition(context);
+              }),
+              buildNavButton(context, width, 'Schedule ',
+                  ['Full Schedule', 'CBD', 'Panari/Sky', 'Diamond'], () {}),
+              buildNavButton(context, width, 'Coming Soon', [], () {
+                final context = comingSoonKey.currentContext;
+                if (Get.currentRoute != '/home') {
+                  Get.offAllNamed('/home');
+                }
+                scrollToPosition(context);
+              }),
+              buildNavButton(context, width, 'My History', [], () {}),
+              buildNavButton(
+                context,
+                MediaQuery.of(context).size.width,
+                'Contact',
+                [],
+                () {
+                  Get.offAllNamed('/contacts');
+                },
+              ),
+              buildNavButton(context, width, 'Login', [], () {}),
+            ],
+          ),
+          const SizedBox(),
+        ],
+      ),
+    );
   }
 }

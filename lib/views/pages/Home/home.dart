@@ -18,8 +18,6 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey<NavigatorState>();
-
 class Home extends StatelessWidget {
   Home({
     super.key,
@@ -28,6 +26,7 @@ class Home extends StatelessWidget {
   final NavigationController navigationController =
       Get.put(NavigationController());
 
+
   @override
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);
@@ -35,6 +34,7 @@ class Home extends StatelessWidget {
     double height = resolution['height'];
     navigationController.activePage.value = "Home";
     navigationController.activeIndex.value = 0;
+
     return Scaffold(
       backgroundColor: primaryBackGround(),
       body: Stack(children: [
@@ -246,7 +246,6 @@ class Home extends StatelessWidget {
           left: 0,
           child: width > 800
               ? CustomAppBar(
-                  mainNavigatorKey: mainNavigatorKey,
                   scrollController: homeScrollController,
                 )
               : const SizedBox(),
