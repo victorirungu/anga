@@ -165,7 +165,7 @@ class Home extends StatelessWidget {
                                               right: 15.0),
                                           child: CustomText(
                                             text: "See What's on at ",
-                                            color: secondaryColor(),
+                                            color: primaryColor(),
                                             fontSize: 20.0,
                                             fontWeight: FontWeight.w600,
                                             letterSpacing: 1.2,
