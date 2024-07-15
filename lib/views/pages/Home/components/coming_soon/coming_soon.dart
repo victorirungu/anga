@@ -81,7 +81,7 @@ class ComingSoon extends StatelessWidget {
               CarouselSlider(
                 items: _buildCarouselItems(),
                 options: CarouselOptions(
-                  height: 480,
+                  height: 390,
                   // aspectRatio: 3.0,
                   // viewportFraction: 0.33,
                   aspectRatio: (width / 350.0).truncateToDouble(),
@@ -106,7 +106,7 @@ class ComingSoon extends StatelessWidget {
                     width: 120.0,
                     height: 35.0,
                     onPressed: () {},
-                    bgColor: themeColorGrey().withOpacity(.65),
+                    bgColor: themeColorGrey(),
                     borderRadius: 20.0,
                   ),
                 ),

@@ -61,7 +61,7 @@ class Cinema extends StatelessWidget {
               alignment: Alignment.topLeft,
               child: Obx(() => CustomText(
                     text:
-                        'Showing  In ${cinemaController.selectedLocationCinema['location']} Today',
+                        'Showing In ${cinemaController.selectedLocationCinema['location']} Today',
                     color: primaryForeGround(),
                     fontSize: width * .021 < 14.0 ? 14.0 : width * .021,
                     letterSpacing: 1.0,
@@ -80,7 +80,7 @@ class Cinema extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(right: 8.0),
                   child: CustomElevatedButton(
                     text: 'View All',
                     style: TextStyle(

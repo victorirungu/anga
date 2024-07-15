@@ -110,7 +110,7 @@ class _EventsState extends State<Events> {
                   CarouselSlider(
                     items: _buildCarouselItems(),
                     options: CarouselOptions(
-                      height: 555.0,
+                      height: 470.0,
                       aspectRatio: (widget.width / 350.0).truncateToDouble(),
                       viewportFraction:
                           1 / ((widget.width / 350.0).truncateToDouble()),
@@ -121,7 +121,7 @@ class _EventsState extends State<Events> {
                     carouselController: _carouselController,
                   ),
                   Align(
-                    alignment: Alignment.bottomRight,
+                    alignment: Alignment.centerRight,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CustomElevatedButton(
@@ -134,7 +134,7 @@ class _EventsState extends State<Events> {
                         width: 120.0,
                         height: 35.0,
                         onPressed: () {},
-                        bgColor: themeColorGrey().withOpacity(.65),
+                        bgColor: themeColorGrey(),
                         borderRadius: 20.0,
                       ),
                     ),

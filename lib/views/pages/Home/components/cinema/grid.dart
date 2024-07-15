@@ -9,43 +9,45 @@ class CinemaGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * .8,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          double gridWidth = constraints.maxWidth;
-          double aspectRatio = 250 / 385;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double gridWidth = constraints.maxWidth;
+        double aspectRatio = 250 / 385;
 
-          int crossAxisCount = (gridWidth / 250).floor();
-          double containerWidth = (gridWidth / crossAxisCount) - 10;
-          double containerHeight = containerWidth / aspectRatio;
-          var rows = (items.length / crossAxisCount).ceil();
+        int crossAxisCount = (gridWidth / 250).floor();
 
-          double padding = crossAxisCount > 1 ? 170.0 : 220.0;
-          return SizedBox(
-            height: (rows * containerWidth) + (padding * rows),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  childAspectRatio: aspectRatio,
-                ),
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return InteractiveCard(
-                    item: items[index],
-                    borderColor: secondaryColor(),
-                    width: containerWidth,
-                    height: containerHeight,
-                    usage: 'Cinema',
-                  );
-                },
+        crossAxisCount = (crossAxisCount == 1) ? 2 : crossAxisCount;
+        aspectRatio = (crossAxisCount == 2) ? 250 / 450 : aspectRatio;
+
+        double containerWidth = (gridWidth / crossAxisCount) - 10;
+        double containerHeight = containerWidth / aspectRatio;
+        var rows = (items.length / crossAxisCount).ceil();
+
+        double padding = 18.0;
+        return SizedBox(
+          height: (rows * containerHeight) + (padding * rows),
+          child: Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: GridView.builder(
+              physics: const ScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                childAspectRatio: aspectRatio,
               ),
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                return InteractiveCard(
+                  item: items[index],
+                  borderColor: secondaryColor(),
+                  width: containerWidth,
+                  height: containerHeight,
+                  usage: 'Cinema',
+                );
+              },
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
