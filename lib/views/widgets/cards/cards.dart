@@ -10,15 +10,18 @@ class InteractiveCard extends StatefulWidget {
   final Map item;
   final Color borderColor;
   final String usage;
+  final VoidCallback onPressed;
+  final double bRadius;
 
-  const InteractiveCard({
-    super.key,
-    required this.item,
-    required this.borderColor,
-    required this.usage,
-    this.width = 250.0,
-    this.height = 320.0,
-  });
+  const InteractiveCard(
+      {super.key,
+      required this.item,
+      required this.borderColor,
+      required this.usage,
+      required this.onPressed,
+      this.width = 250.0,
+      this.height = 320.0,
+      this.bRadius = 30.0});
 
   @override
   InteractiveCardState createState() => InteractiveCardState();
@@ -31,38 +34,41 @@ class InteractiveCardState extends State<InteractiveCard> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.width,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              onEnter: (_) => setState(() => _isHovered = true),
-              onExit: (_) => setState(() => _isHovered = false),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  side: BorderSide(color: widget.borderColor, width: 3.0),
-                ),
-                elevation: 10,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: AnimatedScale(
-                    duration: const Duration(milliseconds: 200),
-                    scale: _isHovered ? 1.1 : 1.0,
-                    child: Image.asset(
-                      widget.item['image']!,
-                      width: widget.width,
-                      height: widget.height * .75,
-                      fit: BoxFit.cover,
+      child: InkWell(
+        onTap: widget.onPressed,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 6.0, 6.0, 6.0),
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                onEnter: (_) => setState(() => _isHovered = true),
+                onExit: (_) => setState(() => _isHovered = false),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(widget.bRadius),
+                    side: BorderSide(color: widget.borderColor, width: 3.0),
+                  ),
+                  elevation: 10,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(widget.bRadius),
+                    child: AnimatedScale(
+                      duration: const Duration(milliseconds: 200),
+                      scale: _isHovered ? 1.1 : 1.0,
+                      child: Image.asset(
+                        widget.item['image']!,
+                        width: widget.width,
+                        height: widget.height * .75,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          ...baseWidget(),
-        ],
+            ...baseWidget(),
+          ],
+        ),
       ),
     );
   }
@@ -228,7 +234,7 @@ class InteractiveCardState extends State<InteractiveCard> {
         ),
       ];
     } else {
-      return const SizedBox();
+      return [const SizedBox()];
     }
   }
 }

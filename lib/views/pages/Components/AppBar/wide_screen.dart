@@ -193,14 +193,13 @@ class CustomAppBarState extends State<CustomAppBar> {
                 }
                 scrollToPosition(context);
               }),
+
+              // const DropDown(),
+
               buildNavButton(context, width, 'Schedule ',
                   ['Full Schedule', 'CBD', 'Panari/Sky', 'Diamond'], () {}),
               buildNavButton(context, width, 'Coming Soon', [], () {
-                final context = comingSoonKey.currentContext;
-                if (Get.currentRoute != '/home') {
-                  Get.offAllNamed('/home');
-                }
-                scrollToPosition(context);
+                Get.offAllNamed('/coming-soon');
               }),
               buildNavButton(context, width, 'My History', [], () {}),
               buildNavButton(
@@ -212,7 +211,9 @@ class CustomAppBarState extends State<CustomAppBar> {
                   Get.offAllNamed('/contacts');
                 },
               ),
-              buildNavButton(context, width, 'Login', [], () {}),
+              buildNavButton(context, width, 'Login', [], () {
+                Get.offAllNamed('/auth');
+              }),
             ],
           ),
           const SizedBox(),

@@ -134,6 +134,7 @@ class ComingSoon extends StatelessWidget {
         usage: 'ComingSoon',
         height: 350.0,
         width: 275.0,
+        onPressed: (){},
       );
     });
   }

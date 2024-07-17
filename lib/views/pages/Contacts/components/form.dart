@@ -1,5 +1,6 @@
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/buttons/simple_button.dart';
+import 'package:anga/views/widgets/inputs/text_field.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
 
@@ -59,32 +60,6 @@ class ContactForm extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  final String hint;
-  final int maxLines;
-
-  const CustomTextField({super.key, required this.hint, this.maxLines = 1});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      maxLines: maxLines,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: primaryForeGround(),
-        labelText:
-            hint, // Use labelText to show the label outside the TextField
-        labelStyle: TextStyle(color: primaryBackGround(), fontSize: 20.0),
-        // hintText: hint,
-        // hintStyle: TextStyle(color: primaryForeGround()),
-        border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(15.0)),
       ),
     );
   }

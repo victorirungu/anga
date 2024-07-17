@@ -1,6 +1,7 @@
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/cards/cards.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CinemaGrid extends StatelessWidget {
   final List items;
@@ -37,12 +38,19 @@ class CinemaGrid extends StatelessWidget {
               itemCount: items.length,
               itemBuilder: (context, index) {
                 return InteractiveCard(
-                  item: items[index],
-                  borderColor: secondaryColor(),
-                  width: containerWidth,
-                  height: containerHeight,
-                  usage: 'Cinema',
-                );
+                    item: items[index],
+                    borderColor: secondaryColor(),
+                    width: containerWidth,
+                    height: containerHeight,
+                    usage: 'Cinema',
+                    onPressed: () {
+                      Get.toNamed(
+                        '/film',
+                        arguments: {
+                          'item': items[index],
+                        },
+                      );
+                    });
               },
             ),
           ),

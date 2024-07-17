@@ -8,6 +8,7 @@ class CustomText extends StatelessWidget {
   final FontWeight fontWeight;
   final FontStyle fontStyle;
   final double letterSpacing;
+  final bool selectableText;
   const CustomText(
       {super.key,
       required this.text,
@@ -16,19 +17,31 @@ class CustomText extends StatelessWidget {
       this.fontFamily = '',
       this.fontSize = 16.0,
       this.fontWeight = FontWeight.w300,
+      this.selectableText = true,
       this.fontStyle = FontStyle.normal});
 
   @override
   Widget build(BuildContext context) {
-    return SelectableText(
-      text,
-      style: TextStyle(
-          color: color,
-          fontFamily: fontFamily,
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          letterSpacing: letterSpacing),
-    );
+    return selectableText
+        ? SelectableText(
+            text,
+            style: TextStyle(
+                color: color,
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                fontWeight: fontWeight,
+                fontStyle: fontStyle,
+                letterSpacing: letterSpacing),
+          )
+        : Text(
+            text,
+            style: TextStyle(
+                color: color,
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                fontWeight: fontWeight,
+                fontStyle: fontStyle,
+                letterSpacing: letterSpacing),
+          );
   }
 }
