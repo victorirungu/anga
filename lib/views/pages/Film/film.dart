@@ -4,12 +4,11 @@ import 'package:anga/views/pages/Film/booking_stages.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
 import 'package:anga/views/pages/Film/seating_chart.dart';
 import 'package:anga/views/themes/themes.dart';
+import 'package:anga/views/widgets/buttons/simple_button.dart';
 import 'package:anga/views/widgets/cards/cards.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../widgets/buttons/simple_button.dart';
 
 class Film extends StatelessWidget {
   Film({
@@ -51,30 +50,8 @@ class Film extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 100.0,
-                    ),
-                    CustomText(
-                      text: 'BOOKING',
-                      color: secondaryColor(),
-                      fontSize: 60.0,
-                      fontWeight: FontWeight.w900,
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    const CustomText(
-                      text: 'ANGA DIAMOND CINEMA - DREAM HALL',
-                      color: Color.fromARGB(255, 167, 185, 188),
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w900,
-                    ),
-                    const SizedBox(
-                      height: 30.0,
-                    ),
-                    const BookingStages(),
-                    const SizedBox(
-                      height: 80.0,
+                    const BookingStages(
+                      stage: 'seat',
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -294,7 +271,9 @@ class Film extends StatelessWidget {
                                               color: primaryBackGround()),
                                         ),
                                         CustomElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Get.toNamed('/payment-method');
+                                          },
                                           text: 'PROCEED',
                                           width: 120.0,
                                           bgColor: secondaryColor(),

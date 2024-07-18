@@ -3,6 +3,9 @@ import 'package:anga/views/pages/ComingSoons/coming_soon.dart';
 import 'package:anga/views/pages/Contacts/contacts.dart';
 import 'package:anga/views/pages/Film/film.dart';
 import 'package:anga/views/pages/Home/home.dart';
+import 'package:anga/views/pages/Payment/choose_payment_method.dart';
+import 'package:anga/views/pages/Payment/mobile_money_form.dart';
+import 'package:anga/views/pages/Payment/successful_payment.dart';
 import 'package:get/get.dart';
 
 class AppRoutes {
@@ -28,5 +31,8 @@ class AppRoutes {
       page: () => Authentication(),
     ),
     GetPage(name: '/film', page: () => Film()),
+    GetPage(name: '/payment-method', page: () => const ChoosePaymentMethod()),
+    GetPage(name: '/mobile-money', page: () => const MobileMoneyForm()),
+    GetPage(name: '/success', page: () => const SuccessfulPayment()),
   ];
 }
