@@ -24,57 +24,72 @@ class _SeatingChartState extends State<SeatingChart> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50.0),
-      child: SizedBox(
-        width: 600.0,
-        height: 320.0,
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.all(10.0),
-              child: Text('Screen', style: TextStyle(color: Colors.white)),
-            ),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 17,
-                  mainAxisSpacing: 4.0,
-                  crossAxisSpacing: 4.0,
+      padding: const EdgeInsets.only(top: 40.0),
+      child: Column(
+        children: [
+          Image(image: AssetImage('images/screen.png')),
+          SizedBox(
+            width: 600.0,
+            height: 400.0,
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(15.0),
+                  child: Text('Screen', style: TextStyle(color: Colors.white)),
                 ),
-                itemCount: seats.length,
-                itemBuilder: (context, index) {
-                  final seat = seats[index];
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (seat['status'] == 'available') {
-                          seat['status'] = 'selected';
-                        } else if (seat['status'] == 'selected') {
-                          seat['status'] = 'available';
-                        }
-                      });
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: _getSeatColor(seat),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Text(
-                          seat['seat_type'] == 'space' ? '' : seat['seat'],
-                          style: TextStyle(
-                            color: lightColor(),
-                            fontSize: 10.0,
+                SizedBox(height: 40.0),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 17,
+                      mainAxisSpacing: 4.0,
+                      crossAxisSpacing: 4.0,
+                    ),
+                    itemCount: seats.length,
+                    itemBuilder: (context, index) {
+                      final seat = seats[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              if (seat['status'] == 'available') {
+                                seat['status'] = 'selected';
+                              } else if (seat['status'] == 'selected') {
+                                seat['status'] = 'available';
+                              }
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: _getSeatColor(seat),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Center(
+                                child: Text(
+                                  seat['seat_type'] == 'space'
+                                      ? ''
+                                      : seat['seat'],
+                                  style: TextStyle(
+                                    color: lightColor(),
+                                    fontSize: 10.0,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

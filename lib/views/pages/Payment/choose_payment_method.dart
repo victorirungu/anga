@@ -1,5 +1,7 @@
 import 'package:anga/controllers/cinema.dart';
+import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
+import 'package:anga/views/pages/Components/AppBar/wide_screen.dart';
 import 'package:anga/views/pages/Film/booking_stages.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
 import 'package:anga/views/themes/themes.dart';
@@ -19,6 +21,8 @@ class ChoosePaymentMethod extends StatefulWidget {
 
 class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
   final ScrollController filmScrollController = ScrollController();
+  final NavigationController navigationController =
+      Get.put(NavigationController());
 
   final CinemaController cinemaController = Get.put(CinemaController());
 
@@ -29,6 +33,9 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
     Map resolution = getResolution(context);
     double width = resolution['width'];
     double height = resolution['height'];
+
+    navigationController.activePage.value = "";
+    navigationController.activeIndex.value = 4;
 
     return Scaffold(
       backgroundColor: primaryBackGround(),
@@ -232,6 +239,15 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
               ),
             ),
           ),
+        ),
+        Positioned(
+          top: 0,
+          left: 0,
+          child: width > 800
+              ? CustomAppBar(
+                  scrollController: filmScrollController,
+                )
+              : const SizedBox(),
         ),
       ]),
     );

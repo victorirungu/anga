@@ -187,11 +187,7 @@ class CustomAppBarState extends State<CustomAppBar> {
                 }
               }),
               buildNavButton(context, width, 'Events/Sports', [], () {
-                final context = eventsKey.currentContext;
-                if (Get.currentRoute != '/home') {
-                  Get.offAllNamed('/home');
-                }
-                scrollToPosition(context);
+                Get.offAllNamed('/events-and-sports');
               }),
 
               // const DropDown(),

@@ -178,7 +178,7 @@ class _EventsState extends State<Events> {
         usage: 'Events',
         height: 290.0,
         width: prefWidth > 280.0 ? 280.0 : prefWidth,
-        onPressed: (){},
+        onPressed: () {},
       );
     });
   }

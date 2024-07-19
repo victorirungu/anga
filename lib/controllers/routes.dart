@@ -1,6 +1,8 @@
+import 'package:anga/views/Consessions/consessions.dart';
 import 'package:anga/views/pages/Authentication/auth.dart';
 import 'package:anga/views/pages/ComingSoons/coming_soon.dart';
 import 'package:anga/views/pages/Contacts/contacts.dart';
+import 'package:anga/views/pages/Events/events_sports.dart';
 import 'package:anga/views/pages/Film/film.dart';
 import 'package:anga/views/pages/Home/home.dart';
 import 'package:anga/views/pages/Payment/choose_payment_method.dart';
@@ -23,8 +25,16 @@ class AppRoutes {
       page: () => ComingSoonComplete(),
     ),
     GetPage(
+      name: '/events-and-sports',
+      page: () => EventsComplete(),
+    ),
+    GetPage(
       name: '/contacts',
       page: () => Contacts(),
+    ),
+    GetPage(
+      name: '/consessions',
+      page: () => Consessions(),
     ),
     GetPage(
       name: '/auth',

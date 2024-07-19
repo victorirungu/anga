@@ -1,5 +1,7 @@
 import 'package:anga/controllers/cinema.dart';
+import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
+import 'package:anga/views/pages/Components/AppBar/wide_screen.dart';
 import 'package:anga/views/pages/Film/booking_stages.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
 import 'package:anga/views/pages/Film/seating_chart.dart';
@@ -16,6 +18,8 @@ class Film extends StatelessWidget {
   });
   final ScrollController filmScrollController = ScrollController();
   final CinemaController cinemaController = Get.put(CinemaController());
+  final NavigationController navigationController =
+      Get.put(NavigationController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,8 @@ class Film extends StatelessWidget {
     double width = resolution['width'];
     double height = resolution['height'];
     final Map args = Get.arguments;
+    navigationController.activePage.value = "";
+    navigationController.activeIndex.value = 4;
 
     return Scaffold(
       backgroundColor: primaryBackGround(),
@@ -64,7 +70,7 @@ class Film extends StatelessWidget {
                               children: [
                                 CustomText(
                                   text: args['item']['name'],
-                                  fontSize: 40.0,
+                                  fontSize: 36.0,
                                   color: primaryForeGround(),
                                   fontWeight: FontWeight.w800,
                                 ),
@@ -131,7 +137,7 @@ class Film extends StatelessWidget {
                               ],
                             )),
                         Padding(
-                          padding: const EdgeInsets.only(top: 100.0),
+                          padding: const EdgeInsets.only(top: 150.0),
                           child: Column(
                             children: [
                               SizedBox(
@@ -191,6 +197,7 @@ class Film extends StatelessWidget {
                             ],
                           ),
                         ),
+                        const SizedBox(height: 20.0),
                         SizedBox(
                           width: width * .43,
                           child: Column(
@@ -252,38 +259,44 @@ class Film extends StatelessWidget {
                                   ]),
                                 ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 100.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const SizedBox(),
-                                    Row(
-                                      children: [
-                                        CustomElevatedButton(
-                                          onPressed: () {},
-                                          text: 'CANCEL',
-                                          width: 120.0,
-                                          bgColor: primaryForeGround(),
-                                          color: primaryForeGround(),
-                                          style: TextStyle(
-                                              color: primaryBackGround()),
-                                        ),
-                                        CustomElevatedButton(
-                                          onPressed: () {
-                                            Get.toNamed('/payment-method');
-                                          },
-                                          text: 'PROCEED',
-                                          width: 120.0,
-                                          bgColor: secondaryColor(),
-                                          color: secondaryColor(),
-                                          style: TextStyle(color: lightColor()),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const SizedBox(),
+                              Row(
+                                children: [
+                                  CustomElevatedButton(
+                                    onPressed: () {
+                                      Get.toNamed('/consessions');
+                                    },
+                                    text: 'CHOOSE CONCESSIONS',
+                                    width: 250.0,
+                                    bgColor: primaryForeGround(),
+                                    color: primaryForeGround(),
+                                    style:
+                                        TextStyle(color: primaryBackGround()),
+                                  ),
+                                  CustomElevatedButton(
+                                    onPressed: () {
+                                      Get.toNamed('/payment-method');
+                                    },
+                                    text: 'PROCEED TO PAYMENT',
+                                    width: 250.0,
+                                    bgColor: secondaryColor(),
+                                    color: secondaryColor(),
+                                    style: TextStyle(color: lightColor()),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -296,6 +309,15 @@ class Film extends StatelessWidget {
               ),
             ),
           ),
+        ),
+        Positioned(
+          top: 0,
+          left: 0,
+          child: width > 800
+              ? CustomAppBar(
+                  scrollController: filmScrollController,
+                )
+              : const SizedBox(),
         ),
       ]),
     );
