@@ -1,18 +1,14 @@
 import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
-import 'package:anga/views/pages/Events/event_sports_container.dart';
 import 'package:anga/views/themes/themes.dart';
-import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:anga/views/pages/Components/AppBar/wide_screen.dart';
 import 'package:anga/views/pages/Components/AppBar/small_screen.dart';
 import 'package:get/get.dart';
 
-GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey<NavigatorState>();
-
-class EventsComplete extends StatelessWidget {
-  EventsComplete({
+class Schedule extends StatelessWidget {
+  Schedule({
     super.key,
   });
   final ScrollController scrollController = ScrollController();
@@ -21,10 +17,13 @@ class EventsComplete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Map args = Get.arguments;
+
+    print(args);
     Map resolution = getResolution(context);
     double width = resolution['width'];
     double height = resolution['height'];
-    navigationController.activePage.value = "Events/Sports";
+    navigationController.activePage.value = "Schedule";
     navigationController.activeIndex.value = 4;
     return Scaffold(
       backgroundColor: primaryBackGround(),
@@ -53,20 +52,11 @@ class EventsComplete extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     //Header
-                    const SizedBox(
-                      height: 140.0,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: CustomText(
-                        text: 'Find Your Favourite Event',
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.w800,
-                        color: primaryColor(),
-                      ),
-                    ),
-                    SizedBox(width: width * .8, child: EventSportsContainer()),
-
+                    // ContactForm(width: width),
+                    // const Padding(
+                    //   padding: EdgeInsets.only(top: 50.0, bottom: 50.0),
+                    //   child: ContactInfo(),
+                    // ),
                     Footer(width: width),
                   ],
                 ),

@@ -45,7 +45,7 @@ class CinemaGrid extends StatelessWidget {
                     usage: 'Cinema',
                     onPressed: () {
                       Get.toNamed(
-                        '/film',
+                        '/show',
                         arguments: {
                           'item': items[index],
                         },

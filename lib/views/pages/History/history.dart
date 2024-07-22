@@ -1,38 +1,30 @@
-import 'package:anga/controllers/cinema.dart';
 import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
-import 'package:anga/views/pages/Components/AppBar/wide_screen.dart';
-import 'package:anga/views/pages/Show/booking_stages.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
+import 'package:anga/views/pages/History/components/table.dart';
 import 'package:anga/views/themes/themes.dart';
-import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:anga/views/pages/Components/AppBar/wide_screen.dart';
+import 'package:anga/views/pages/Components/AppBar/small_screen.dart';
 import 'package:get/get.dart';
 
-class SuccessfulPayment extends StatefulWidget {
-  const SuccessfulPayment({
+GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey<NavigatorState>();
+
+class History extends StatelessWidget {
+  History({
     super.key,
   });
-
-  @override
-  State<SuccessfulPayment> createState() => _SuccessfulPaymentState();
-}
-
-class _SuccessfulPaymentState extends State<SuccessfulPayment> {
-  final ScrollController filmScrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
   final NavigationController navigationController =
       Get.put(NavigationController());
-  final CinemaController cinemaController = Get.put(CinemaController());
 
   @override
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);
     double width = resolution['width'];
     double height = resolution['height'];
-
-    navigationController.activePage.value = "";
+    navigationController.activePage.value = "My History";
     navigationController.activeIndex.value = 4;
-
     return Scaffold(
       backgroundColor: primaryBackGround(),
       body: Stack(children: [
@@ -51,40 +43,20 @@ class _SuccessfulPaymentState extends State<SuccessfulPayment> {
                   WidgetStateProperty.all(primaryColor().withOpacity(.2)),
             ),
             child: Scrollbar(
-              controller: filmScrollController,
+              controller: scrollController,
               radius: const Radius.circular(5.0),
               thickness: width > 500 ? 7.0 : 3.0,
               child: SingleChildScrollView(
-                controller: filmScrollController,
+                controller: scrollController,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const BookingStages(stage: 'payment'),
-                    const Image(image: AssetImage('images/success_pay.png')),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CustomText(
-                        text: 'PAYMENT SUCCESSFUL',
-                        color: primaryForeGround(),
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    //Header
+                    const SizedBox(
+                      height: 150.0,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: TextButton(
-                          onPressed: () {
-                            Get.toNamed('/ticket');
-                          },
-                          child: CustomText(
-                            text: 'proceed to download ticket',
-                            color: secondaryColor(),
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.w500,
-                            selectableText: false,
-                          )),
-                    ),
+                    MyHistoryTable(),
+
                     Footer(width: width),
                   ],
                 ),
@@ -97,11 +69,12 @@ class _SuccessfulPaymentState extends State<SuccessfulPayment> {
           left: 0,
           child: width > 800
               ? CustomAppBar(
-                  scrollController: filmScrollController,
+                  scrollController: scrollController,
                 )
               : const SizedBox(),
         ),
       ]),
+      bottomNavigationBar: width < 800 ? MobileNavigation() : const SizedBox(),
     );
   }
 }

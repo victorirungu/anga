@@ -36,6 +36,8 @@ class InteractiveCardState extends State<InteractiveCard> {
       width: widget.width,
       child: InkWell(
         onTap: widget.onPressed,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         child: Column(
           children: [
             Padding(
@@ -86,7 +88,7 @@ class InteractiveCardState extends State<InteractiveCard> {
         Padding(
           padding: const EdgeInsets.fromLTRB(12.0, 4.0, 0.0, 4.0),
           child: AnimatedButton(
-            onPress: () {},
+            onPress: widget.onPressed,
             height: 32,
             width: 120,
             text: 'Book now',

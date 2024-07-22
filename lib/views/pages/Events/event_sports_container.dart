@@ -54,12 +54,12 @@ class EventSportsContainer extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         double gridWidth = constraints.maxWidth;
-        double aspectRatio = 300 / 520;
+        double aspectRatio = 300 / 450;
 
         int crossAxisCount = (gridWidth / 300).floor();
 
         crossAxisCount = (crossAxisCount == 1) ? 2 : crossAxisCount;
-        aspectRatio = (crossAxisCount == 2) ? 300 / 520 : aspectRatio;
+        aspectRatio = (crossAxisCount == 2) ? 300 / 450 : aspectRatio;
 
         double containerWidth = (gridWidth / crossAxisCount) - 10;
         double containerHeight = containerWidth / aspectRatio;

@@ -2,9 +2,9 @@ import 'package:anga/controllers/cinema.dart';
 import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/pages/Components/AppBar/wide_screen.dart';
-import 'package:anga/views/pages/Film/booking_stages.dart';
+import 'package:anga/views/pages/Show/booking_stages.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
-import 'package:anga/views/pages/Film/seating_chart.dart';
+import 'package:anga/views/pages/Show/seating_chart.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/buttons/simple_button.dart';
 import 'package:anga/views/widgets/cards/cards.dart';
@@ -277,7 +277,7 @@ class Film extends StatelessWidget {
                                 children: [
                                   CustomElevatedButton(
                                     onPressed: () {
-                                      Get.toNamed('/consessions');
+                                      Get.toNamed('/concessions');
                                     },
                                     text: 'CHOOSE CONCESSIONS',
                                     width: 250.0,

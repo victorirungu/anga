@@ -1,6 +1,7 @@
+import 'package:anga/controllers/concessions.dart';
 import 'package:anga/controllers/navigation.dart';
-import 'package:anga/views/Consessions/consession_container.dart';
-import 'package:anga/views/Consessions/consession_quantity_stepper.dart';
+import 'package:anga/views/pages/Concessions/concession_options.dart';
+import 'package:anga/views/pages/Concessions/concession_container.dart';
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
 import 'package:anga/views/themes/themes.dart';
@@ -13,13 +14,15 @@ import 'package:get/get.dart';
 
 GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey<NavigatorState>();
 
-class Consessions extends StatelessWidget {
-  Consessions({
+class Concessions extends StatelessWidget {
+  Concessions({
     super.key,
   });
   final ScrollController scrollController = ScrollController();
   final NavigationController navigationController =
       Get.put(NavigationController());
+  final ConcessionsController concessionsController =
+      Get.put(ConcessionsController());
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,7 @@ class Consessions extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                          SizedBox(
                           width: width * .75,
                           child: Column(
                             children: [
@@ -76,51 +79,9 @@ class Consessions extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  CustomElevatedButton(
-                                    onPressed: () {},
-                                    text: 'All',
-                                    width: 120.0,
-                                    borderRadius: 10.0,
-                                    bgColor: secondaryColor(),
-                                    style: TextStyle(
-                                        color: lightColor(), fontSize: 20.0),
-                                  ),
-                                  CustomElevatedButton(
-                                    onPressed: () {},
-                                    text: 'Cookies',
-                                    width: 120.0,
-                                    borderRadius: 10.0,
-                                    bgColor: secondaryColor(),
-                                    style: TextStyle(
-                                        color: lightColor(), fontSize: 20.0),
-                                  ),
-                                  CustomElevatedButton(
-                                    onPressed: () {},
-                                    text: 'Snacks',
-                                    width: 120.0,
-                                    borderRadius: 10.0,
-                                    bgColor: secondaryColor(),
-                                    style: TextStyle(
-                                        color: lightColor(), fontSize: 20.0),
-                                  ),
-                                  CustomElevatedButton(
-                                    onPressed: () {},
-                                    text: 'Popcorn',
-                                    width: 120.0,
-                                    borderRadius: 10.0,
-                                    bgColor: lightColor(),
-                                    style: TextStyle(
-                                        color: darkColor(), fontSize: 20.0),
-                                  ),
-                                  CustomElevatedButton(
-                                    onPressed: () {},
-                                    text: 'Drinks',
-                                    width: 120.0,
-                                    borderRadius: 10.0,
-                                    bgColor: secondaryColor(),
-                                    style: TextStyle(
-                                        color: lightColor(), fontSize: 20.0),
-                                  ),
+                                  ConcessionOptions(
+                                      width: width,
+                                      items: concessionsController.categories),
                                 ],
                               ),
                               const SizedBox(

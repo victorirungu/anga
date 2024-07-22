@@ -1,6 +1,6 @@
+import 'package:anga/controllers/cinema.dart';
 import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
-import 'package:anga/views/pages/Components/Globals/globals.dart';
 import 'package:anga/views/pages/Home/components/logo.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +25,7 @@ class CustomAppBarState extends State<CustomAppBar> {
   bool hasReachedTopThreshold = false;
   final NavigationController navigationController =
       Get.put(NavigationController());
+  final CinemaController cinemaController = Get.put(CinemaController());
 
   bool _isDropdownShown = false;
 
@@ -63,7 +64,7 @@ class CustomAppBarState extends State<CustomAppBar> {
   }
 
   Widget buildNavButton(BuildContext context, double width, String title,
-      List<String> dropdownItems, VoidCallback? onPressed) {
+      List dropdownItems, VoidCallback? onPressed) {
     final bool isActive = activeLink == title;
 
     return MouseRegion(
@@ -139,7 +140,7 @@ class CustomAppBarState extends State<CustomAppBar> {
   }
 
   void _showDropdown(
-      BuildContext context, String title, List<String> dropdownItems, width) {
+      BuildContext context, String title, List dropdownItems, width) {
     if (dropdownItems.isEmpty) return;
 
     if (_isDropdownShown) {
@@ -150,14 +151,19 @@ class CustomAppBarState extends State<CustomAppBar> {
     showMenu(
       context: context,
       position: RelativeRect.fromLTRB(width / 2.32, 75.0, width / 2.32, 0.0),
-      items: dropdownItems.map((String item) {
+      items: dropdownItems.map((item) {
         return PopupMenuItem<String>(
           value: item,
           child: Text(item),
         );
       }).toList(),
     ).then((value) {
-      // Handle the selected value
+      Get.toNamed(
+        '/schedule',
+        arguments: {
+          'focus': value,
+        },
+      );
     });
   }
 
@@ -165,6 +171,10 @@ class CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);
     double width = resolution['width'];
+
+    List<String?> locationNames =
+        cinemaController.locations.map((location) => location['name']).toList();
+    List<String?> navButtonOptions = ['Full Schedule', ...locationNames];
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       color: widget.scrollController.hasClients &&
@@ -192,12 +202,14 @@ class CustomAppBarState extends State<CustomAppBar> {
 
               // const DropDown(),
 
-              buildNavButton(context, width, 'Schedule ',
-                  ['Full Schedule', 'CBD', 'Panari/Sky', 'Diamond'], () {}),
+              buildNavButton(
+                  context, width, 'Schedule', navButtonOptions, () {}),
               buildNavButton(context, width, 'Coming Soon', [], () {
                 Get.offAllNamed('/coming-soon');
               }),
-              buildNavButton(context, width, 'My History', [], () {}),
+              buildNavButton(context, width, 'My History', [], () {
+                Get.offAllNamed('/history');
+              }),
               buildNavButton(
                 context,
                 MediaQuery.of(context).size.width,

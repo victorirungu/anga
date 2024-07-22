@@ -2,6 +2,7 @@ import 'package:anga/controllers/cinema.dart';
 import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/pages/Components/AppBar/wide_screen.dart';
+import 'package:anga/views/pages/Payment/Tickets/ticketLayout.dart';
 import 'package:anga/views/pages/Show/booking_stages.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
 import 'package:anga/views/themes/themes.dart';
@@ -9,16 +10,16 @@ import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SuccessfulPayment extends StatefulWidget {
-  const SuccessfulPayment({
+class TicketView extends StatefulWidget {
+  const TicketView({
     super.key,
   });
 
   @override
-  State<SuccessfulPayment> createState() => _SuccessfulPaymentState();
+  State<TicketView> createState() => _TicketViewState();
 }
 
-class _SuccessfulPaymentState extends State<SuccessfulPayment> {
+class _TicketViewState extends State<TicketView> {
   final ScrollController filmScrollController = ScrollController();
   final NavigationController navigationController =
       Get.put(NavigationController());
@@ -60,30 +61,34 @@ class _SuccessfulPaymentState extends State<SuccessfulPayment> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const BookingStages(stage: 'payment'),
-                    const Image(image: AssetImage('images/success_pay.png')),
+                    const BookingStages(stage: 'ticket'),
+                    SizedBox(width: width * .65, child: const TicketWidget()),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CustomText(
-                        text: 'PAYMENT SUCCESSFUL',
-                        color: primaryForeGround(),
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.w600,
+                      padding: const EdgeInsets.all(20.0),
+                      child: SizedBox(
+                        width: 250.0,
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.download,
+                                  color: secondaryColor(),
+                                  size: 20.0,
+                                ),
+                                const SizedBox(
+                                  width: 5.0,
+                                ),
+                                CustomText(
+                                  text: 'download ticket',
+                                  color: secondaryColor(),
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.w500,
+                                  selectableText: false,
+                                ),
+                              ],
+                            )),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: TextButton(
-                          onPressed: () {
-                            Get.toNamed('/ticket');
-                          },
-                          child: CustomText(
-                            text: 'proceed to download ticket',
-                            color: secondaryColor(),
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.w500,
-                            selectableText: false,
-                          )),
                     ),
                     Footer(width: width),
                   ],
