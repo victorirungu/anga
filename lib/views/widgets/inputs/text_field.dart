@@ -6,12 +6,14 @@ class CustomTextField extends StatelessWidget {
   final int maxLines;
   final bool fillColor;
   final double bRadius;
+  final Widget suffix;
 
   const CustomTextField(
       {super.key,
       required this.hint,
       this.fillColor = false,
       this.bRadius = 15.0,
+      this.suffix = const SizedBox(),
       this.maxLines = 1});
 
   @override
@@ -31,7 +33,9 @@ class CustomTextField extends StatelessWidget {
         border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(bRadius)),
+            suffixIcon: suffix,
       ),
+      
     );
   }
 }

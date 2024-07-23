@@ -1,6 +1,9 @@
 import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
+import 'package:anga/views/pages/Schedule/components/film_categories.dart';
+import 'package:anga/views/pages/Schedule/components/film_schedules.dart';
+import 'package:anga/views/pages/Schedule/components/search.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:anga/views/pages/Components/AppBar/wide_screen.dart';
@@ -17,9 +20,13 @@ class Schedule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map args = Get.arguments;
-
-    print(args);
+    // final Map args = Get.arguments;
+    final Map args = {
+      'id': '4',
+      'name': 'Inside Out 2',
+      'image': 'images/homepage55.jpg',
+    };
+    // print(args);
     Map resolution = getResolution(context);
     double width = resolution['width'];
     double height = resolution['height'];
@@ -51,12 +58,31 @@ class Schedule extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    //Header
-                    // ContactForm(width: width),
-                    // const Padding(
-                    //   padding: EdgeInsets.only(top: 50.0, bottom: 50.0),
-                    //   child: ContactInfo(),
-                    // ),
+                    const SizedBox(height: 150.0),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 40.0),
+                      child: SearchComponent(),
+                    ),
+                    Container(
+                      width: width * .75,
+                      color: primaryForeGround(),
+                      height: 1.0,
+                    ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    FilmCategories(width: width),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    FilmSchedules(
+                      args: args,
+                      width: width,
+                    ),
+                    FilmSchedules(
+                      args: args,
+                      width: width,
+                    ),
                     Footer(width: width),
                   ],
                 ),
