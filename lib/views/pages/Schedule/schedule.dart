@@ -1,3 +1,4 @@
+import 'package:anga/controllers/cinema.dart';
 import 'package:anga/controllers/navigation.dart';
 import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/pages/Components/Footer/footer.dart';
@@ -17,16 +18,11 @@ class Schedule extends StatelessWidget {
   final ScrollController scrollController = ScrollController();
   final NavigationController navigationController =
       Get.put(NavigationController());
+  final CinemaController cinemaController = Get.put(CinemaController());
 
   @override
   Widget build(BuildContext context) {
-    // final Map args = Get.arguments;
-    final Map args = {
-      'id': '4',
-      'name': 'Inside Out 2',
-      'image': 'images/homepage55.jpg',
-    };
-    // print(args);
+   
     Map resolution = getResolution(context);
     double width = resolution['width'];
     double height = resolution['height'];
@@ -76,11 +72,7 @@ class Schedule extends StatelessWidget {
                       height: 30.0,
                     ),
                     FilmSchedules(
-                      args: args,
-                      width: width,
-                    ),
-                    FilmSchedules(
-                      args: args,
+                      items: cinemaController.schedule,
                       width: width,
                     ),
                     Footer(width: width),

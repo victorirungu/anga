@@ -6,24 +6,39 @@ import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/material.dart';
 
 class FilmSchedules extends StatelessWidget {
-  final Map args;
+  final List items;
   final double width;
-  const FilmSchedules({super.key, required this.args, required this.width});
+  const FilmSchedules({super.key, required this.items, required this.width});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 12.0),
-          child: SizedBox(
-            width: width * .8,
-            child: Row(
+      children: items
+          .map((item) => FilmScheduleItem(item: item, width: width))
+          .toList(),
+    );
+  }
+}
+
+class FilmScheduleItem extends StatelessWidget {
+  final dynamic item;
+  final double width;
+  const FilmScheduleItem({super.key, required this.item, required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 12.0),
+      child: SizedBox(
+        width: width * .8,
+        child: Column(
+          children: [
+            Row(
               children: [
                 Column(
                   children: [
                     InteractiveCard(
-                        item: args,
+                        item: item,
                         borderColor: primaryForeGround(),
                         height: 420.0,
                         bRadius: 20.0,
@@ -33,7 +48,7 @@ class FilmSchedules extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CustomText(
-                        text: 'Diamond | 2D',
+                        text: '${item['location']} |${item['experience']}',
                         color: lightColor(),
                         fontSize: 30.0,
                         fontWeight: FontWeight.w400,
@@ -57,13 +72,14 @@ class FilmSchedules extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CustomText(
-                                    text: 'TWISTERS | 18+',
+                                    text: '${item['name']} | 18+',
                                     color: lightColor(),
                                     fontSize: 25.0,
                                     fontWeight: FontWeight.w700,
                                   ),
                                   CustomText(
-                                    text: '125mins | Action',
+                                    text:
+                                        '${item['duration']} | ${item['category']}',
                                     color: lightColor().withOpacity(.65),
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w200,
@@ -108,17 +124,17 @@ class FilmSchedules extends StatelessWidget {
                 )
               ],
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: width * .8,
+                height: 1.0,
+                color: lightColor(),
+              ),
+            )
+          ],
         ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width * .8,
-          color: lightColor(),
-          height: .5,
-        )
-      ],
+      ),
     );
   }
 }

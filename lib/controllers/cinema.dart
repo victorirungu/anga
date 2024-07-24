@@ -1,10 +1,93 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CinemaController extends GetxController {
   var selectedLocationId = 1.obs;
   var selectedLocationCinema = {}.obs;
+
+ RxList schedule = [
+    {
+      'id': '1',
+      'name': 'Kraven',
+      'image': 'images/homepage1.jpg',
+      'location': 'Diamond',
+      'experience': '2D',
+      'date': '2024-07-24',
+      'times': [
+        '10:30am',
+        '12:30pm',
+        '8:00pm',
+      ],
+      'duration': '125mins',
+      'category': 'action',
+    },
+    {
+      'id': '2',
+      'name': 'Furiosa',
+      'image': 'images/homepage2.jpg',
+      'location': 'Diamond',
+      'experience': '2D',
+      'date': '2024-07-24',
+      'times': [
+        '10:30am',
+        '12:30pm',
+        '8:00pm',
+      ],
+      'duration': '125mins',
+      'category': 'action',
+    },
+    {
+      'id': '3',
+      'name': 'Bad Boys',
+      'image': 'images/homepage4.jpg',
+      'location': 'CBD',
+      'experience': '3D',
+      'date': '2024-07-25',
+      'times': [
+        '10:00am',
+        '8:00pm',
+      ],
+      'duration': '118mins',
+      'category': 'action',
+    },
+    {
+      'id': '4',
+      'name': 'Inside Out 2',
+      'image': 'images/homepage55.jpg',
+      'location': 'CBD',
+      'experience': '3D',
+      'date': '2024-07-25',
+      'times': [
+        '10:00am',
+        '8:00pm',
+      ],
+      'duration': '135mins',
+      'category': 'action',
+    },
+    {
+      'id': '5',
+      'name': 'Despicable me 4',
+      'image': 'images/homepage66.jpeg',
+      'location': 'Panari/Sky',
+      'experience': '3D',
+      'date': '2024-07-26',
+      'times': [
+        '10:00am',
+        '12:00pm',
+        '10:00pm',
+      ],
+      'duration': '135mins',
+      'category': 'action',
+    },
+  ].obs;
+
+
+
+
+
+
 
   var locations = [
     {
@@ -1379,4 +1462,57 @@ class CinemaController extends GetxController {
       orElse: () => locations[0],
     );
   }
+
+List<Map<String, dynamic>> getWeekDates() {
+  // Initialize the list that will hold the week's dates
+  List<Map<String, dynamic>> weekDates = [];
+
+  // Get today's date
+  DateTime now = DateTime.now();
+
+  // Find the start of the week (Monday)
+  DateTime startOfWeek = now.subtract(Duration(days: now.weekday - 1));
+
+  // Generate dates for each day of the week starting from Monday to Sunday
+  for (int i = 0; i < 7; i++) {
+    DateTime currentDate = startOfWeek.add(Duration(days: i));
+
+    // Format the date
+    String formattedDate = DateFormat('dd MMMM').format(currentDate);
+
+    // Determine the weekday abbreviation
+    String dayAbbreviation = '';
+    switch (currentDate.weekday) {
+      case 1:
+        dayAbbreviation = 'MON';
+        break;
+      case 2:
+        dayAbbreviation = 'TUE';
+        break;
+      case 3:
+        dayAbbreviation = 'WED';
+        break;
+      case 4:
+        dayAbbreviation = 'THU';
+        break;
+      case 5:
+        dayAbbreviation = 'FRI';
+        break;
+      case 6:
+        dayAbbreviation = 'SAT';
+        break;
+      case 7:
+        dayAbbreviation = 'SUN';
+        break;
+    }
+
+    // Add the map to the list
+    weekDates.add({
+      'day': dayAbbreviation,
+      'date': formattedDate,
+      'raw_date': DateFormat('yyyy-MM-dd').format(currentDate)
+    });
+  }
+  return weekDates;
+}
 }
