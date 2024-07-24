@@ -49,47 +49,45 @@ class _FilmScheduleWidgetState extends State<FilmScheduleWidget> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * .52,
                   height: 65.0,
-                  child: Expanded(
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: daysOfWeek.length,
-                      itemBuilder: (context, index) {
-                        final item = daysOfWeek[index];
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _currentIndex = index;
-                            });
-                          },
-                          child: Container(
-                            width: 90.0,
-                            height: 40.0,
-                            margin: const EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                              color: _currentIndex == index
-                                  ? secondaryColor()
-                                  : Colors.grey,
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  item['day'],
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 16.0),
-                                ),
-                                Text(
-                                  item['date'],
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 12.0),
-                                ),
-                              ],
-                            ),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: daysOfWeek.length,
+                    itemBuilder: (context, index) {
+                      final item = daysOfWeek[index];
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        },
+                        child: Container(
+                          width: 90.0,
+                          height: 40.0,
+                          margin: const EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                            color: _currentIndex == index
+                                ? secondaryColor()
+                                : Colors.grey,
+                            borderRadius: BorderRadius.circular(5.0),
                           ),
-                        );
-                      },
-                    ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                item['day'],
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 16.0),
+                              ),
+                              Text(
+                                item['date'],
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 12.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 Padding(
