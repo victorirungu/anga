@@ -54,18 +54,18 @@ class EventSportsContainer extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         double gridWidth = constraints.maxWidth;
-        double aspectRatio = 300 / 450;
+        double aspectRatio = 300 / 540;
 
         int crossAxisCount = (gridWidth / 300).floor();
 
         crossAxisCount = (crossAxisCount == 1) ? 2 : crossAxisCount;
-        aspectRatio = (crossAxisCount == 2) ? 300 / 450 : aspectRatio;
+        aspectRatio = (crossAxisCount == 2) ? 300 / 540 : aspectRatio;
 
         double containerWidth = (gridWidth / crossAxisCount) - 10;
         double containerHeight = containerWidth / aspectRatio;
         var rows = (items.length / crossAxisCount).ceil();
 
-        double padding = 22.0;
+        double padding = 30.0;
         return SizedBox(
           height: (rows * containerHeight) + (padding * rows),
           child: Padding(
@@ -82,31 +82,30 @@ class EventSportsContainer extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Container(
                     color: secondaryColor(),
-                    width: 300.0,
-                    height: 520.0,
+                    width: containerWidth,
+                    height: containerHeight,
                     child: Column(
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 0.0, vertical: 20.0),
                           child: Container(
-                              height: 250.0,
-                              width: 260.0,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.white, // Border color
-                                  width: 4.0, // Border width
-                                ),
+                            height: containerHeight * 0.55,
+                            width: containerWidth * 0.8,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white, // Border color
+                                width: 4.0, // Border width
                               ),
-                              child: Image.asset(
-                                'images/homepage1.jpg',
-                                width: 250.0,
-                                height: 260.0,
-                                fit: BoxFit.cover,
-                              )),
+                            ),
+                            child: Image.asset(
+                              items[index]['image']!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                         CustomText(
-                          text: 'Spain vs Germany',
+                          text: items[index]['name']!,
                           fontSize: 20.0,
                           fontWeight: FontWeight.w700,
                           color: primaryColor(),
@@ -124,7 +123,7 @@ class EventSportsContainer extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: CustomText(
-                                  text: 'Mon 29th Jul 2024',
+                                  text: items[index]['releases']!,
                                   color: primaryForeGround(),
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w400,
@@ -146,7 +145,7 @@ class EventSportsContainer extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: CustomText(
-                                  text: '05:00 PM',
+                                  text: items[index]['time']!,
                                   color: primaryForeGround(),
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w400,
@@ -168,7 +167,7 @@ class EventSportsContainer extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: CustomText(
-                                  text: 'Anga Diamond',
+                                  text: items[index]['location']!,
                                   color: primaryForeGround(),
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w600,
@@ -185,9 +184,7 @@ class EventSportsContainer extends StatelessWidget {
                               AnimatedRatingStars(
                                 initialRating: 4.5,
                                 onChanged: (rating) {
-                                  // setState(() {
-                                  //   _rating = rating;
-                                  // });
+                                  // Handle rating change
                                 },
                                 displayRatingValue:
                                     true, // Display the rating value

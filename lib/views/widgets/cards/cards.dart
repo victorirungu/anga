@@ -215,21 +215,29 @@ class InteractiveCardState extends State<InteractiveCard> {
     } else if (widget.usage == 'ComingSoon') {
       return [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(4.0),
           child: SelectableText(
             widget.item['releases'],
             style: GoogleFonts.roboto(
-                fontSize: 23,
+                fontSize: widget.width * .1 > 23.0
+                    ? 23.0
+                    : widget.width * .1 < 15.0
+                        ? 15.0
+                        : widget.width * .1,
                 fontWeight: FontWeight.w500,
                 color: primaryForeGround()),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(4.0),
           child: SelectableText(
             widget.item['name'],
             style: GoogleFonts.roboto(
-                fontSize: 23,
+                fontSize: widget.width * .1 > 23.0
+                    ? 23.0
+                    : widget.width * .1 < 15.0
+                        ? 15.0
+                        : widget.width * .1,
                 fontWeight: FontWeight.w500,
                 color: primaryForeGround()),
           ),

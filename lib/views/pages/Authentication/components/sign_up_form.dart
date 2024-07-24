@@ -26,10 +26,14 @@ class SignUpForm extends StatelessWidget {
             children: <Widget>[
               CustomText(
                   text: 'Create an Anga Cinemas account',
-                  fontSize: 32,
+                  fontSize: width * .04 > 32.0
+                      ? 32.0
+                      : width * .04 < 18
+                          ? 18
+                          : width * .04,
                   fontWeight: FontWeight.w800,
                   color: secondaryColor()),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -37,7 +41,11 @@ class SignUpForm extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: CustomText(
                       text: 'Username',
-                      fontSize: 22.0,
+                      fontSize: width * .03 > 22.0
+                          ? 22.0
+                          : width * .03 < 16
+                              ? 16
+                              : width * .03,
                       color: primaryForeGround(),
                     ),
                   ),
@@ -55,7 +63,11 @@ class SignUpForm extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: CustomText(
                       text: 'Email Address',
-                      fontSize: 22.0,
+                      fontSize: width * .03 > 22.0
+                          ? 22.0
+                          : width * .03 < 16
+                              ? 16
+                              : width * .03,
                       color: primaryForeGround(),
                     ),
                   ),
@@ -73,7 +85,11 @@ class SignUpForm extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: CustomText(
                       text: 'Phone number',
-                      fontSize: 22.0,
+                      fontSize: width * .03 > 22.0
+                          ? 22.0
+                          : width * .03 < 16
+                              ? 16
+                              : width * .03,
                       color: primaryForeGround(),
                     ),
                   ),
@@ -91,7 +107,11 @@ class SignUpForm extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: CustomText(
                       text: 'Password',
-                      fontSize: 22.0,
+                      fontSize: width * .03 > 22.0
+                          ? 22.0
+                          : width * .03 < 16
+                              ? 16
+                              : width * .03,
                       color: primaryForeGround(),
                     ),
                   ),
@@ -101,7 +121,13 @@ class SignUpForm extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+              SizedBox(
+                height: width * .04 > 30.0
+                    ? 30.0
+                    : width * .04 < 20
+                        ? 20
+                        : width * .03,
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -109,12 +135,17 @@ class SignUpForm extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: CustomText(
                       text: 'Confirm Password',
-                      fontSize: 22.0,
+                      fontSize: width * .03 > 22.0
+                          ? 22.0
+                          : width * .03 < 16
+                              ? 16
+                              : width * .03,
                       color: primaryForeGround(),
                     ),
                   ),
                   const CustomTextField(
                     hint: 'Confirm Password',
+                    fillColor: true,
                   ),
                 ],
               ),

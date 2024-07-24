@@ -17,7 +17,8 @@ class ComingSoonGrid extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 20.0, top: 130.0),
+          padding:
+              EdgeInsets.only(bottom: 20.0, top: width > 800.0 ? 130.0 : 20.0),
           child: SizedBox(
             width: width * .8,
             child: Align(
@@ -35,7 +36,7 @@ class ComingSoonGrid extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: width * .8,
+          width: width > 800 ? width * .8 : width * .9,
           child: Column(
             children: [
               ComingSoonItem(),

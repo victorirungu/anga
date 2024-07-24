@@ -11,7 +11,7 @@ class LoginForm extends StatelessWidget {
   final double width;
   LoginForm({super.key, required this.width});
   final CheckboxController controller = Get.put(CheckboxController());
-   final DataController dataController = Get.put(DataController());
+  final DataController dataController = Get.put(DataController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,11 @@ class LoginForm extends StatelessWidget {
             children: <Widget>[
               CustomText(
                   text: 'Log in into your Anga Cinemas account',
-                  fontSize: 32,
+                  fontSize: width * .04 > 32.0
+                      ? 32.0
+                      : width * .04 < 18
+                          ? 18
+                          : width * .04,
                   fontWeight: FontWeight.w800,
                   color: secondaryColor()),
               const SizedBox(height: 30),
@@ -37,7 +41,11 @@ class LoginForm extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: CustomText(
                       text: 'Email Address',
-                      fontSize: 22.0,
+                      fontSize: width * .03 > 22.0
+                          ? 22.0
+                          : width * .03 < 16
+                              ? 16
+                              : width * .03,
                       color: primaryForeGround(),
                     ),
                   ),
@@ -54,7 +62,11 @@ class LoginForm extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: CustomText(
                       text: 'Password',
-                      fontSize: 22.0,
+                      fontSize: width * .03 > 22.0
+                          ? 22.0
+                          : width * .03 < 16
+                              ? 16
+                              : width * .03,
                       color: primaryForeGround(),
                     ),
                   ),

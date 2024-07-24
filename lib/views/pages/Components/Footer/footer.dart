@@ -73,14 +73,14 @@ class Footer extends StatelessWidget {
           child: SocialMediaIcons(),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 40.0),
+          padding: const EdgeInsets.only(top: 40.0, left: 5.0, right: 5.0),
           child: CustomText(
             text:
                 "$currentYear Anga Cinemas. All rights reserved. Powered by Vesen Computing",
             fontSize: width * .015 > 17.0
                 ? 17.0
-                : width * .015 < 13.0
-                    ? 13.0
+                : width * .015 < 12.0
+                    ? 12.0
                     : width * .015,
             fontWeight: FontWeight.w100,
             color: primaryForeGround(),

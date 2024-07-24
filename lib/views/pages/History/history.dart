@@ -52,8 +52,8 @@ class History extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     //Header
-                    const SizedBox(
-                      height: 150.0,
+                    SizedBox(
+                      height: width > 800.0 ? 150.0 : 0.0,
                     ),
                     MyHistoryTable(),
 
