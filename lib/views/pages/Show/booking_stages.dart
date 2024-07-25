@@ -11,10 +11,11 @@ class BookingStages extends StatelessWidget {
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);
     double width = resolution['width'];
+
     return Column(
       children: [
-        const SizedBox(
-          height: 100.0,
+        SizedBox(
+          height: width > 800.0 ? 100.0 : 20.0,
         ),
         CustomText(
           text: 'BOOKING',
@@ -28,14 +29,14 @@ class BookingStages extends StatelessWidget {
         const CustomText(
           text: 'ANGA DIAMOND CINEMA - DREAM HALL',
           color: Color.fromARGB(255, 167, 185, 188),
-          fontSize: 25.0,
+          fontSize: 24.0,
           fontWeight: FontWeight.w900,
         ),
         const SizedBox(
           height: 30.0,
         ),
         SizedBox(
-          width: width * .6,
+          width: width > 800.0 ? width * .6 : width * .8,
           child: Column(
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -43,56 +44,103 @@ class BookingStages extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                        height: 40.0,
-                        width: 40.0,
+                        height: width * .03 > 40.0
+                            ? 40.0
+                            : width * .03 < 25.0
+                                ? 25.0
+                                : width * .03,
+                        width: width * .03 > 40.0
+                            ? 40.0
+                            : width * .03 < 25.0
+                                ? 25.0
+                                : width * .03,
                         child: Card(
-                          color:stage == 'seat' ? primaryColor() : primaryForeGround(),
+                          color: stage == 'seat'
+                              ? primaryColor()
+                              : primaryForeGround(),
                         )),
                   ),
                   CustomText(
                     text: 'CHOOSE SEAT',
-                     color:stage == 'seat' ? primaryColor() : primaryForeGround(),
+                    color:
+                        stage == 'seat' ? primaryColor() : primaryForeGround(),
                     fontWeight: FontWeight.w800,
-                    fontSize: 18.0,
+                    fontSize: width * .015 > 18.0
+                        ? 18.0
+                        : width * .015 < 14.0
+                            ? 14.0
+                            : width * .015,
                   ),
                 ]),
                 Row(children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                        height: 40.0,
-                        width: 40.0,
+                        height: width * .03 > 40.0
+                            ? 40.0
+                            : width * .03 < 25.0
+                                ? 25.0
+                                : width * .03,
+                        width: width * .03 > 40.0
+                            ? 40.0
+                            : width * .03 < 25.0
+                                ? 25.0
+                                : width * .03,
                         child: Card(
-                          color:stage == 'payment' ? primaryColor() : primaryForeGround(),
+                          color: stage == 'payment'
+                              ? primaryColor()
+                              : primaryForeGround(),
                         )),
                   ),
                   CustomText(
                     text: 'PAYMENT',
-                     color:stage == 'payment' ? primaryColor() : primaryForeGround(),
+                    color: stage == 'payment'
+                        ? primaryColor()
+                        : primaryForeGround(),
                     fontWeight: FontWeight.w800,
-                    fontSize: 18.0,
+                    fontSize: width * .015 > 18.0
+                        ? 18.0
+                        : width * .015 < 14.0
+                            ? 14.0
+                            : width * .015,
                   ),
                 ]),
                 Row(children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                        height: 40.0,
-                        width: 40.0,
+                        height: width * .03 > 40.0
+                            ? 40.0
+                            : width * .03 < 25.0
+                                ? 25.0
+                                : width * .03,
+                        width: width * .03 > 40.0
+                            ? 40.0
+                            : width * .03 < 25.0
+                                ? 25.0
+                                : width * .03,
                         child: Card(
-                           color:stage == 'ticket' ? primaryColor() : primaryForeGround(),
+                          color: stage == 'ticket'
+                              ? primaryColor()
+                              : primaryForeGround(),
                         )),
                   ),
                   CustomText(
                     text: 'TICKET',
-                     color:stage == 'ticket' ? primaryColor() : primaryForeGround(),
+                    color: stage == 'ticket'
+                        ? primaryColor()
+                        : primaryForeGround(),
                     fontWeight: FontWeight.w800,
-                    fontSize: 18.0,
+                    fontSize: width * .015 > 18.0
+                        ? 18.0
+                        : width * .015 < 14.0
+                            ? 14.0
+                            : width * .015,
                   ),
                 ]),
               ]),
               Container(
-                width: width * .7,
+                width: width > 800.0 ? width * .7 : width * .8,
                 height: 1.0,
                 color: primaryForeGround(),
               )

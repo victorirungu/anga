@@ -1,7 +1,6 @@
 import 'package:anga/controllers/concessions.dart';
 import 'package:anga/views/pages/Concessions/concession_quantity_stepper.dart';
 import 'package:anga/views/themes/themes.dart';
-import 'package:anga/views/widgets/buttons/simple_button.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,11 +54,14 @@ class ConsessionContainer extends StatelessWidget {
                         width: 270.0,
                         height: 280.0,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image(
-                              image: AssetImage(
-                                  '${consessionController.setConcessions[index]['image']}'),
+                            Container(
+                              constraints: const BoxConstraints(maxHeight: 140.0),
+                              child: Image(
+                                image: AssetImage(
+                                    '${consessionController.setConcessions[index]['image']}'),
+                              ),
                             ),
                             CustomText(
                               text:
@@ -73,26 +75,26 @@ class ConsessionContainer extends StatelessWidget {
                               children: [
                                 QuantityStepper(
                                     consession: const {}, cart: {}.obs),
-                                CustomElevatedButton(
-                                  text: 'Select',
-                                  width: 60.0,
-                                  height: 20.0,
-                                  color: primaryColor(),
-                                  onPressed: () {},
-                                  bgColor: primaryColor(),
-                                  style: TextStyle(
-                                      color: colorBlack(), fontSize: 12.0),
-                                ),
-                                CustomElevatedButton(
-                                  text: 'Remove',
-                                  width: 60.0,
-                                  height: 20.0,
-                                  color: primaryColor(),
-                                  onPressed: () {},
-                                  bgColor: primaryColor(),
-                                  style: TextStyle(
-                                      color: colorBlack(), fontSize: 12.0),
-                                )
+                                // CustomElevatedButton(
+                                //   text: 'Select',
+                                //   width: 60.0,
+                                //   height: 20.0,
+                                //   color: primaryColor(),
+                                //   onPressed: () {},
+                                //   bgColor: primaryColor(),
+                                //   style: TextStyle(
+                                //       color: colorBlack(), fontSize: 12.0),
+                                // ),
+                                // CustomElevatedButton(
+                                //   text: 'Remove',
+                                //   width: 60.0,
+                                //   height: 20.0,
+                                //   color: primaryColor(),
+                                //   onPressed: () {},
+                                //   bgColor: primaryColor(),
+                                //   style: TextStyle(
+                                //       color: colorBlack(), fontSize: 12.0),
+                                // )
                               ],
                             )
                           ],

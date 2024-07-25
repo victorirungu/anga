@@ -20,7 +20,7 @@ class ConcessionOptions extends StatelessWidget {
         : (width * .22 < 120.0 ? 120.0 : width * .22);
 
     return Obx(() => SizedBox(
-          width: width * .6,
+          width: width > 1030.0 ? width * .6 : width * .9,
           child:
               width * .6 > ((items.length * btnWidth) + (items.length * 24.0))
                   ? concessionOptionsBtnWidget()
