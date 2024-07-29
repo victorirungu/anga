@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FilmScheduleWidget extends StatefulWidget {
-  const FilmScheduleWidget({super.key});
+  final Map item;
+  const FilmScheduleWidget({super.key, required this.item});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -156,7 +157,14 @@ class _FilmScheduleWidgetState extends State<FilmScheduleWidget> {
               child: CustomElevatedButton(
                 text: 'BOOK NOW',
                 width: 140.0,
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(
+                    '/show',
+                    arguments: {
+                      'item': widget.item,
+                    },
+                  );
+                },
                 style: TextStyle(
                     color: lightColor(),
                     fontSize: 18.0,

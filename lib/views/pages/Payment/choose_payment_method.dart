@@ -78,7 +78,7 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
                       height: 360.0,
                       width: 350.0,
                       child: ListView(
-                        controller: filmScrollController,
+                        // controller: filmScrollController,
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.all(4.0),

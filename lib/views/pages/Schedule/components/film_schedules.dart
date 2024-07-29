@@ -117,7 +117,7 @@ class FilmScheduleItem extends StatelessWidget {
                         child: SizedBox(
                             width: width * .6,
                             height: 250.0,
-                            child: const FilmScheduleWidget()),
+                            child: FilmScheduleWidget(item: item)),
                       ),
                     ],
                   ),
