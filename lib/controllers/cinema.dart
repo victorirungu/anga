@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 class CinemaController extends GetxController {
   var selectedLocationId = 1.obs;
   var selectedLocationCinema = {}.obs;
+  var homePageSliderActiveShowIndex = 0.obs;
 
  RxList schedule = [
     {

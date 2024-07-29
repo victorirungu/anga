@@ -14,9 +14,7 @@ import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/buttons/dropdown_button.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatelessWidget {
   Home({
@@ -67,35 +65,8 @@ class Home extends StatelessWidget {
                         SizedBox(
                             height: 600.0,
                             width: width,
-                            child: const HomeSlider()),
-                        //overlay
-                        Positioned(
-                          top: 380.0,
-                          left: (width / 2) -
-                              ((width * .5 > 280 ? 280 : width * .5) / 2),
-                          child: Column(
-                            children: [
-                              AnimatedButton(
-                                onPress: () {},
-                                height: width < 700 ? 50.0 : 55.0,
-                                width: width * .5 > 280 ? 280 : width * .5,
-                                text: 'BOOK NOW',
-                                isReverse: true,
-                                animatedOn: AnimatedOn.onHover,
-                                selectedTextColor: Colors.white,
-                                transitionType: TransitionType.LEFT_TO_RIGHT,
-                                textStyle: GoogleFonts.roboto(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w900,
-                                    color: colorBlack()),
-                                backgroundColor: primaryColor(),
-                                borderColor: themeColorTransparent(),
-                                borderRadius: 50,
-                                selectedBackgroundColor: secondaryColor(),
-                              ),
-                            ],
-                          ),
-                        ),
+                            child: HomeSlider()),
+                       
                         Positioned(
                           top: 20.0,
                           child:

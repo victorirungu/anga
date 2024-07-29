@@ -4,6 +4,7 @@ import 'package:anga/views/widgets/cards/cards.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ComingSoon extends StatelessWidget {
   final double width;
@@ -81,9 +82,7 @@ class ComingSoon extends StatelessWidget {
               CarouselSlider(
                 items: _buildCarouselItems(),
                 options: CarouselOptions(
-                  height: 390,
-                  // aspectRatio: 3.0,
-                  // viewportFraction: 0.33,
+                  height: 430,
                   aspectRatio: (width / 350.0).truncateToDouble(),
                   viewportFraction: 1 / ((width / 350.0).truncateToDouble()),
                   enableInfiniteScroll: true,
@@ -105,7 +104,9 @@ class ComingSoon extends StatelessWidget {
                     ),
                     width: 120.0,
                     height: 35.0,
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed('/coming-soon');
+                    },
                     bgColor: themeColorGrey(),
                     borderRadius: 20.0,
                   ),
@@ -132,9 +133,9 @@ class ComingSoon extends StatelessWidget {
         item: items[index],
         borderColor: primaryColor(),
         usage: 'ComingSoon',
-        height: 350.0,
+        height: 420.0,
         width: 275.0,
-        onPressed: (){},
+        onPressed: () {},
       );
     });
   }

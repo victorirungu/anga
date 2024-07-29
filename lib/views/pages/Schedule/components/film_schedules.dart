@@ -30,7 +30,7 @@ class FilmScheduleItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 12.0),
       child: SizedBox(
-        width: width * .8,
+        width: width * .82,
         child: Column(
           children: [
             Row(
@@ -128,8 +128,8 @@ class FilmScheduleItem extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 width: width * .8,
-                height: 1.0,
-                color: lightColor(),
+                height: .50,
+                color: lightColor().withOpacity(.8),
               ),
             )
           ],

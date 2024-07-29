@@ -22,7 +22,6 @@ class Schedule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     Map resolution = getResolution(context);
     double width = resolution['width'];
     double height = resolution['height'];
@@ -60,7 +59,7 @@ class Schedule extends StatelessWidget {
                       child: SearchComponent(),
                     ),
                     Container(
-                      width: width * .75,
+                      width: width * .8,
                       color: primaryForeGround(),
                       height: 1.0,
                     ),

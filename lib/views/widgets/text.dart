@@ -14,7 +14,7 @@ class CustomText extends StatelessWidget {
       required this.text,
       this.letterSpacing = 1.0,
       this.color = Colors.black,
-      this.fontFamily = '',
+      this.fontFamily = 'Lato',
       this.fontSize = 16.0,
       this.fontWeight = FontWeight.w300,
       this.selectableText = true,

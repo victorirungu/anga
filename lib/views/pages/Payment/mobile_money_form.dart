@@ -68,87 +68,171 @@ class _MobileMoneyFormState extends State<MobileMoneyForm> {
                     ),
                     SizedBox(
                       width: 600.0,
-                      height: 180.0,
+                      height: width > 800 ? 180.0 : 250.0,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomText(
-                                  text: 'Enter mobile number',
-                                  color: primaryForeGround(),
-                                  fontSize: width * .018 > 25.0
-                                      ? 25.0
-                                      : width * .018 < 17.0
-                                          ? 17.0
-                                          : width * .018,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                const SizedBox(
-                                  width: 300.0,
-                                  height: 40.0,
-                                  child: CustomTextField(
-                                    fillColor: true,
-                                    hint: '',
-                                    bRadius: 10.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomText(
-                                  text: 'Enter amount',
-                                  color: primaryForeGround(),
-                                  fontSize: width * .018 > 25.0
-                                      ? 25.0
-                                      : width * .018 < 18.0
-                                          ? 18.0
-                                          : width * .018,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                const SizedBox(
-                                  width: 300.0,
-                                  height: 40.0,
-                                  child: CustomTextField(
-                                    fillColor: true,
-                                    hint: '',
-                                    bRadius: 10.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomText(
-                                  text: 'Enter PIN',
-                                  color: primaryForeGround(),
-                                  fontSize: width * .018 > 25.0
-                                      ? 25.0
-                                      : width * .018 < 18.0
-                                          ? 18.0
-                                          : width * .018,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                const SizedBox(
-                                  width: 300.0,
-                                  height: 40.0,
-                                  child: CustomTextField(
-                                    fillColor: true,
-                                    hint: '',
-                                    bRadius: 10.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                          padding: const EdgeInsets.all(8.0),
+                          child: LayoutBuilder(
+                            builder: (BuildContext context,
+                                BoxConstraints constraints) {
+                              double width = constraints.maxWidth;
+
+                              return Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  width < 500
+                                      ? Column(
+                                          children: [
+                                            CustomText(
+                                              text: 'Enter mobile number',
+                                              color: primaryForeGround(),
+                                              fontSize: width * .018 > 25.0
+                                                  ? 25.0
+                                                  : width * .018 < 17.0
+                                                      ? 17.0
+                                                      : width * .018,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            const SizedBox(
+                                              width: 300.0,
+                                              height: 40.0,
+                                              child: CustomTextField(
+                                                fillColor: true,
+                                                hint: '',
+                                                bRadius: 10.0,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            CustomText(
+                                              text: 'Enter mobile number',
+                                              color: primaryForeGround(),
+                                              fontSize: width * .018 > 25.0
+                                                  ? 25.0
+                                                  : width * .018 < 17.0
+                                                      ? 17.0
+                                                      : width * .018,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            const SizedBox(
+                                              width: 300.0,
+                                              height: 40.0,
+                                              child: CustomTextField(
+                                                fillColor: true,
+                                                hint: '',
+                                                bRadius: 10.0,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                  const SizedBox(height: 16.0),
+                                  width < 500
+                                      ? Column(
+                                          children: [
+                                            CustomText(
+                                              text: 'Enter amount',
+                                              color: primaryForeGround(),
+                                              fontSize: width * .018 > 25.0
+                                                  ? 25.0
+                                                  : width * .018 < 18.0
+                                                      ? 18.0
+                                                      : width * .018,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            const SizedBox(
+                                              width: 300.0,
+                                              height: 40.0,
+                                              child: CustomTextField(
+                                                fillColor: true,
+                                                hint: '',
+                                                bRadius: 10.0,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            CustomText(
+                                              text: 'Enter amount',
+                                              color: primaryForeGround(),
+                                              fontSize: width * .018 > 25.0
+                                                  ? 25.0
+                                                  : width * .018 < 18.0
+                                                      ? 18.0
+                                                      : width * .018,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            const SizedBox(
+                                              width: 300.0,
+                                              height: 40.0,
+                                              child: CustomTextField(
+                                                fillColor: true,
+                                                hint: '',
+                                                bRadius: 10.0,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                  const SizedBox(height: 16.0),
+                                  width < 500
+                                      ? Column(
+                                          children: [
+                                            CustomText(
+                                              text: 'Enter PIN',
+                                              color: primaryForeGround(),
+                                              fontSize: width * .018 > 25.0
+                                                  ? 25.0
+                                                  : width * .018 < 18.0
+                                                      ? 18.0
+                                                      : width * .018,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            const SizedBox(
+                                              width: 300.0,
+                                              height: 40.0,
+                                              child: CustomTextField(
+                                                fillColor: true,
+                                                hint: '',
+                                                bRadius: 10.0,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            CustomText(
+                                              text: 'Enter PIN',
+                                              color: primaryForeGround(),
+                                              fontSize: width * .018 > 25.0
+                                                  ? 25.0
+                                                  : width * .018 < 18.0
+                                                      ? 18.0
+                                                      : width * .018,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            const SizedBox(
+                                              width: 300.0,
+                                              height: 40.0,
+                                              child: CustomTextField(
+                                                fillColor: true,
+                                                hint: '',
+                                                bRadius: 10.0,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                ],
+                              );
+                            },
+                          )),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),

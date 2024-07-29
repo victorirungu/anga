@@ -12,6 +12,7 @@ class InteractiveCard extends StatefulWidget {
   final String usage;
   final VoidCallback onPressed;
   final double bRadius;
+  final double padding;
 
   const InteractiveCard(
       {super.key,
@@ -20,6 +21,7 @@ class InteractiveCard extends StatefulWidget {
       required this.usage,
       required this.onPressed,
       this.width = 250.0,
+      this.padding = 2.0,
       this.height = 320.0,
       this.bRadius = 30.0});
 
@@ -32,44 +34,47 @@ class InteractiveCardState extends State<InteractiveCard> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width,
-      child: InkWell(
-        onTap: widget.onPressed,
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 6.0, 6.0, 6.0),
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                onEnter: (_) => setState(() => _isHovered = true),
-                onExit: (_) => setState(() => _isHovered = false),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(widget.bRadius),
-                    side: BorderSide(color: widget.borderColor, width: 3.0),
-                  ),
-                  elevation: 10,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(widget.bRadius),
-                    child: AnimatedScale(
-                      duration: const Duration(milliseconds: 200),
-                      scale: _isHovered ? 1.1 : 1.0,
-                      child: Image.asset(
-                        widget.item['image']!,
-                        width: widget.width,
-                        height: widget.height * .75,
-                        fit: BoxFit.cover,
+    return Padding(
+      padding: EdgeInsets.all(widget.padding),
+      child: SizedBox(
+        width: widget.width,
+        child: InkWell(
+          onTap: widget.onPressed,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 6.0, 6.0, 6.0),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  onEnter: (_) => setState(() => _isHovered = true),
+                  onExit: (_) => setState(() => _isHovered = false),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(widget.bRadius),
+                      side: BorderSide(color: widget.borderColor, width: 3.0),
+                    ),
+                    elevation: 10,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(widget.bRadius),
+                      child: AnimatedScale(
+                        duration: const Duration(milliseconds: 200),
+                        scale: _isHovered ? 1.1 : 1.0,
+                        child: Image.asset(
+                          widget.item['image']!,
+                          width: widget.width,
+                          height: widget.height * .75,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            ...baseWidget(),
-          ],
+              ...baseWidget(),
+            ],
+          ),
         ),
       ),
     );

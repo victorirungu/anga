@@ -13,12 +13,12 @@ class CinemaGrid extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         double gridWidth = constraints.maxWidth;
-        double aspectRatio = 250 / 385;
+        double aspectRatio = 220 / 390;
 
-        int crossAxisCount = (gridWidth / 250).floor();
+        int crossAxisCount = (gridWidth / 220).floor();
 
         crossAxisCount = (crossAxisCount == 1) ? 2 : crossAxisCount;
-        aspectRatio = (crossAxisCount == 2) ? 250 / 450 : aspectRatio;
+        aspectRatio = (crossAxisCount == 2) ? 220 / 390 : aspectRatio;
 
         double containerWidth = (gridWidth / crossAxisCount) - 10;
         double containerHeight = containerWidth / aspectRatio;
@@ -38,6 +38,7 @@ class CinemaGrid extends StatelessWidget {
               itemCount: items.length,
               itemBuilder: (context, index) {
                 return InteractiveCard(
+                    padding: 10.0,
                     item: items[index],
                     borderColor: secondaryColor(),
                     width: containerWidth,

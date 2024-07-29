@@ -19,9 +19,9 @@ class Locations extends StatelessWidget {
         : (width * .22 < 120.0 ? 120.0 : width * .22);
 
     return Obx(() => SizedBox(
-          width: width * .8,
+          width: width * .85,
           child:
-              width * .8 > ((items.length * btnWidth) + (items.length * 24.0))
+              width * .85 > ((items.length * btnWidth) + (items.length * 24.0))
                   ? locationBtnWidget()
                   : SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -35,18 +35,18 @@ class Locations extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: items.map((item) {
         return Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(2.0),
           child: CustomElevatedButton(
-            bgColor:
-                int.parse(item['id']) == cinemaController.selectedLocationId.value
-                    ? themeColorGrey()
-                    : primaryColor(),
+            bgColor: int.parse(item['id']) ==
+                    cinemaController.selectedLocationId.value
+                ? themeColorGrey()
+                : primaryColor(),
             color: colorBlack(),
             text: item['name'],
-            width: width * .22 > 155.0
-                ? 155.0
+            width: width * .22 > 165.0
+                ? 165.0
                 : (width * .22 < 120.0 ? 120.0 : width * .22),
-            height: 35.0,
+            height: 38.0,
             borderRadius: 20.0,
             onPressed: () {
               cinemaController.updateLocation(int.parse(item['id']));

@@ -1,5 +1,6 @@
 import 'package:anga/views/functions/resolution.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Logo extends StatelessWidget {
   const Logo({super.key});
@@ -13,7 +14,9 @@ class Logo extends StatelessWidget {
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Get.offAllNamed('/home');
+          },
           child: SizedBox(
               width: width * .065 < 55.0 ? 55.0 : width * .065,
               child: const Image(image: AssetImage("images/logo.png"))),

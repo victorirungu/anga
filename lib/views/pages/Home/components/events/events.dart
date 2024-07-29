@@ -4,6 +4,7 @@ import 'package:anga/views/widgets/cards/cards.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Events extends StatefulWidget {
   final double width;
@@ -110,7 +111,7 @@ class _EventsState extends State<Events> {
                   CarouselSlider(
                     items: _buildCarouselItems(),
                     options: CarouselOptions(
-                      height: 470.0,
+                      height: 550.0,
                       aspectRatio: (widget.width / 350.0).truncateToDouble(),
                       viewportFraction:
                           1 / ((widget.width / 350.0).truncateToDouble()),
@@ -133,7 +134,9 @@ class _EventsState extends State<Events> {
                         ),
                         width: 120.0,
                         height: 35.0,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed('/events-and-sports');
+                        },
                         bgColor: themeColorGrey(),
                         borderRadius: 20.0,
                       ),
@@ -176,7 +179,7 @@ class _EventsState extends State<Events> {
         item: items[index],
         borderColor: lightColor(),
         usage: 'Events',
-        height: 290.0,
+        height: 400.0,
         width: prefWidth > 280.0 ? 280.0 : prefWidth,
         onPressed: () {},
       );

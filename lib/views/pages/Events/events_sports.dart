@@ -25,7 +25,7 @@ class EventsComplete extends StatelessWidget {
     double width = resolution['width'];
     double height = resolution['height'];
     navigationController.activePage.value = "Events/Sports";
-    navigationController.activeIndex.value = 4;
+    // navigationController.activeIndex.value = 4;
     return Scaffold(
       backgroundColor: primaryBackGround(),
       body: Stack(children: [
@@ -53,14 +53,18 @@ class EventsComplete extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     //Header
-                    const SizedBox(
-                      height: 140.0,
+                    SizedBox(
+                      height: width > 800 ? 140.0 : 20.0,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: CustomText(
                         text: 'Find Your Favourite Event',
-                        fontSize: 40.0,
+                        fontSize: width * .03 > 40.0
+                            ? 40.0
+                            : width * .03 < 20.0
+                                ? 20.0
+                                : width * .03,
                         fontWeight: FontWeight.w800,
                         color: primaryColor(),
                       ),

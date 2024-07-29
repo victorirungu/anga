@@ -47,3 +47,7 @@ flutter:
     - family: Anton
       fonts:
         - asset: assets/fonts/Anton.ttf
+
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato/Lato-Regular.ttf

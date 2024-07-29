@@ -26,17 +26,26 @@ class BookingStages extends StatelessWidget {
         const SizedBox(
           height: 20.0,
         ),
-        const CustomText(
-          text: 'ANGA DIAMOND CINEMA - DREAM HALL',
-          color: Color.fromARGB(255, 167, 185, 188),
-          fontSize: 24.0,
-          fontWeight: FontWeight.w900,
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CustomText(
+              text: 'ANGA DIAMOND CINEMA - DREAM HALL',
+              color: const Color.fromARGB(255, 167, 185, 188),
+              fontSize: width * .048 > 24.0
+                  ? 24.0
+                  : width * .04 < 15.0
+                      ? 15.0
+                      : width * .04,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
         ),
         const SizedBox(
           height: 30.0,
         ),
         SizedBox(
-          width: width > 800.0 ? width * .6 : width * .8,
+          width: width > 800.0 ? width * .6 : width * .95,
           child: Column(
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -67,8 +76,8 @@ class BookingStages extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                     fontSize: width * .015 > 18.0
                         ? 18.0
-                        : width * .015 < 14.0
-                            ? 14.0
+                        : width * .015 < 10.0
+                            ? 10.0
                             : width * .015,
                   ),
                 ]),
@@ -100,8 +109,8 @@ class BookingStages extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                     fontSize: width * .015 > 18.0
                         ? 18.0
-                        : width * .015 < 14.0
-                            ? 14.0
+                        : width * .015 < 10.0
+                            ? 10.0
                             : width * .015,
                   ),
                 ]),
@@ -133,14 +142,14 @@ class BookingStages extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                     fontSize: width * .015 > 18.0
                         ? 18.0
-                        : width * .015 < 14.0
-                            ? 14.0
+                        : width * .015 < 10.0
+                            ? 10.0
                             : width * .015,
                   ),
                 ]),
               ]),
               Container(
-                width: width > 800.0 ? width * .7 : width * .8,
+                width: width > 800.0 ? width * .7 : width * .9,
                 height: 1.0,
                 color: primaryForeGround(),
               )
