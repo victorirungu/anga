@@ -161,6 +161,8 @@ class CustomAppBarState extends State<CustomAppBar> {
     ).then((value) {
       // Check if value is not null (an item was selected)
       if (value != null) {
+        cinemaController.scheduleFilter.clear();
+        cinemaController.updateScheduleFilter(value);
         Get.toNamed(
           '/schedule',
           arguments: {

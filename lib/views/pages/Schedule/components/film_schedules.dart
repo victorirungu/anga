@@ -1,22 +1,27 @@
+import 'package:anga/controllers/cinema.dart';
 import 'package:anga/views/pages/Schedule/components/flim_schedule_widget.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:anga/views/widgets/cards/cards.dart';
 import 'package:anga/views/widgets/text.dart';
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FilmSchedules extends StatelessWidget {
   final List items;
   final double width;
-  const FilmSchedules({super.key, required this.items, required this.width});
-
+  FilmSchedules({super.key, required this.items, required this.width});
+  final CinemaController cinemaController = Get.put(CinemaController());
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: items
-          .map((item) => FilmScheduleItem(item: item, width: width))
-          .toList(),
-    );
+    return Obx(() {
+      List filteredItems = cinemaController.getFilteredItems();
+      return Column(
+        children: filteredItems
+            .map((item) => FilmScheduleItem(item: item, width: width))
+            .toList(),
+      );
+    });
   }
 }
 
@@ -44,7 +49,14 @@ class FilmScheduleItem extends StatelessWidget {
                         bRadius: 20.0,
                         width: 270.0,
                         usage: 'film_overview',
-                        onPressed: () {}),
+                        onPressed: () {
+                          Get.toNamed(
+                            '/show',
+                            arguments: {
+                              'item': item,
+                            },
+                          );
+                        }),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CustomText(
