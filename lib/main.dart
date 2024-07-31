@@ -1,3 +1,4 @@
+import 'package:anga/controllers/user.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:anga/views/themes/themes.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  UserController userController = Get.put(UserController());
   late StreamSubscription _sub;
   bool checkLink = false;
   String route = '';
@@ -28,6 +30,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
+    userController.authenticateUser();
     if (kIsWeb) {
       handleWebLinks();
     } else {
