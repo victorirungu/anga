@@ -46,7 +46,7 @@ class HomeSlider extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Stack(children: [
               SizedBox(
-                height: 600.0,
+                height: 420.0,
                 width: width,
                 child: Image.asset(
                   items[index]['image']!,
@@ -56,14 +56,14 @@ class HomeSlider extends StatelessWidget {
               Positioned(
                   child: Container(
                 color: Colors.black.withOpacity(.55),
-                height: 600.0,
+                height: 420.0,
                 width: width,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                        width: width * .077,
-                        height: width * .077,
+                        width: width * .063,
+                        height: width * .063,
                         decoration: BoxDecoration(
                           color: secondaryColor(),
                           shape: BoxShape.circle,
@@ -71,7 +71,7 @@ class HomeSlider extends StatelessWidget {
                         child: Icon(
                           Icons.play_circle_fill_rounded,
                           color: primaryColor(),
-                          size: width * .075,
+                          size: width * .061,
                         )),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0),
@@ -81,7 +81,7 @@ class HomeSlider extends StatelessWidget {
                             items[index]['name']!,
                             style: GoogleFonts.lato(
                                 color: lightColor(),
-                                fontSize: width * .053,
+                                fontSize: width * .039,
                                 fontWeight: FontWeight.bold),
                           )),
                     ),
@@ -114,8 +114,8 @@ class HomeSlider extends StatelessWidget {
             cinemaController.homePageSliderActiveShowIndex.value = index;
           }),
       Positioned(
-        top: 380.0,
-        left: (width / 2) - ((width * .5 > 280 ? 280 : width * .5) / 2),
+        top: width < 800.0 ? 250.0 : 290.0,
+        left: (width / 2) - ((width * .4 > 280 ? 280 : width * .4) / 2),
         child: Column(
           children: [
             AnimatedButton(
@@ -128,15 +128,15 @@ class HomeSlider extends StatelessWidget {
                   },
                 );
               },
-              height: width < 700 ? 50.0 : 55.0,
-              width: width * .5 > 280 ? 280 : width * .5,
+              height: width < 700 ? 40.0 : 45.0,
+              width: 180.0,
               text: 'BOOK NOW',
               isReverse: true,
               animatedOn: AnimatedOn.onHover,
               selectedTextColor: Colors.white,
               transitionType: TransitionType.LEFT_TO_RIGHT,
               textStyle: GoogleFonts.roboto(
-                  fontSize: 24,
+                  fontSize: 18,
                   fontWeight: FontWeight.w900,
                   color: colorBlack()),
               backgroundColor: primaryColor(),

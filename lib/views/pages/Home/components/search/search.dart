@@ -15,11 +15,11 @@ class Search extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 30.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
           child: CustomText(
             text: "Find a Film",
             color: primaryForeGround(),
-            fontSize: width * .038,
+            fontSize: width * .030,
             fontWeight: FontWeight.w800,
           ),
         ),
@@ -143,7 +143,7 @@ class Search extends StatelessWidget {
               ),
             ],
           ),
-         const SizedBox(height: 20),
+          const SizedBox(height: 20),
           CustomElevatedButton(
             text: 'Check Availability',
             fontWeight: FontWeight.w700,

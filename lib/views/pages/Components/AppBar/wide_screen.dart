@@ -4,6 +4,7 @@ import 'package:anga/views/functions/resolution.dart';
 import 'package:anga/views/pages/Home/components/logo.dart';
 import 'package:anga/views/themes/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class CustomAppBar extends StatefulWidget {
@@ -67,55 +68,49 @@ class CustomAppBarState extends State<CustomAppBar> {
       List dropdownItems, VoidCallback? onPressed) {
     final bool isActive = activeLink == title;
 
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onHover: (event) => _showDropdown(context, title, dropdownItems, width),
-      onEnter: (event) => _showDropdown(context, title, dropdownItems, width),
-      onExit: (event) {
-        _isDropdownShown = false;
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: TextButton(
-          onPressed: () {
-            if (!isActive) {
-              onPressed?.call();
-              setActiveLink(title);
-            }
-          },
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: width * .0134 > 16.0
-                          ? 16.0
-                          : (width * .0134 < 12.0 ? 12.0 : width * .0134),
-                      wordSpacing: 1.2,
-                      color: isActive ? primaryColor() : primaryForeGround(),
-                      fontWeight: isActive ? FontWeight.bold : FontWeight.w300,
-                    ),
+    return InkWell(
+      onHover: (event) =>
+          _showDropdown(context, title, dropdownItems, width, !event),
+      onTap: () => _showDropdown(context, title, dropdownItems, width),
+      child: TextButton(
+        onPressed: () {
+          if (!isActive) {
+            onPressed?.call();
+            setActiveLink(title);
+          }
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: width * .0134 > 16.0
+                        ? 16.0
+                        : (width * .0134 < 12.0 ? 12.0 : width * .0134),
+                    wordSpacing: 1.2,
+                    color: isActive ? primaryColor() : primaryForeGround(),
+                    fontWeight: isActive ? FontWeight.bold : FontWeight.w300,
                   ),
-                  dropdownItems.isNotEmpty
-                      ? Icon(
-                          Icons.keyboard_arrow_down,
-                          color: primaryForeGround(),
-                        )
-                      : const SizedBox()
-                ],
-              ),
-              if (isActive)
-                Container(
-                  margin: const EdgeInsets.only(top: 2.0),
-                  height: 1.0,
-                  width: width * .03,
-                  color: primaryColor(),
                 ),
-            ],
-          ),
+                dropdownItems.isNotEmpty
+                    ? Icon(
+                        Icons.keyboard_arrow_down,
+                        color: primaryForeGround(),
+                      )
+                    : const SizedBox()
+              ],
+            ),
+            if (isActive)
+              Container(
+                margin: const EdgeInsets.only(top: 2.0),
+                height: 1.0,
+                width: width * .03,
+                color: primaryColor(),
+              ),
+          ],
         ),
       ),
     );
@@ -140,14 +135,17 @@ class CustomAppBarState extends State<CustomAppBar> {
   }
 
   void _showDropdown(
-      BuildContext context, String title, List dropdownItems, double width) {
+      BuildContext context, String title, List dropdownItems, double width,
+      [bool close = false]) {
+    print(close);
     if (dropdownItems.isEmpty) return;
 
-    if (_isDropdownShown) {
-      _isDropdownShown = false;
+    if (close && !_isDropdownShown) return;
+
+    if (close && _isDropdownShown) {
+      Navigator.of(context).pop();
       return;
     }
-    _isDropdownShown = true;
 
     showMenu(
       context: context,

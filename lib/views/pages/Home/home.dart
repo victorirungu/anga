@@ -24,7 +24,6 @@ class Home extends StatelessWidget {
   final NavigationController navigationController =
       Get.put(NavigationController());
 
-
   @override
   Widget build(BuildContext context) {
     Map resolution = getResolution(context);
@@ -63,17 +62,14 @@ class Home extends StatelessWidget {
                     Stack(
                       children: [
                         SizedBox(
-                            height: 600.0,
-                            width: width,
-                            child: HomeSlider()),
-                       
+                            height: 420.0, width: width, child: HomeSlider()),
                         Positioned(
                           top: 20.0,
                           child:
                               width < 800.0 ? const Logo() : const SizedBox(),
                         ),
                         Positioned(
-                            bottom: 30.0,
+                            bottom: 20.0,
                             child: SizedBox(
                               width: width,
                               child: width > 600.0
